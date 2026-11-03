@@ -1,17 +1,8 @@
 openapi: 3.0.1
 info:
-  title: Nomba API
+  description: ''
+  title: Vendor API
   version: 1.0.0
-  description: >-
-    Accounts, virtual accounts, checkout, transfers, direct debits, terminals,
-    transactions and bill payments. Generated from https://developer.nomba.com.
-  contact:
-    name: Nomba Developers
-    url: https://developer.nomba.com
-    email: docs@nomba.com
-  license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
 servers:
   - description: Production
     url: https://api.nomba.com
@@ -129,6 +120,8 @@ paths:
     $ref: paths/v1_checkout_checkout-card-otp.yaml
   /v1/checkout/user-card:
     $ref: paths/v1_checkout_user-card.yaml
+  /v1/direct-debits/status:
+    $ref: paths/v1_direct-debits_status.yaml
   /v1/direct-debits:
     $ref: paths/v1_direct-debits.yaml
   /v1/direct-debits/debit-mandate:
@@ -219,8 +212,6 @@ paths:
     $ref: paths/v1_accounts_virtual_{identifier}.yaml
   /v1/accounts/virtual/list:
     $ref: paths/v1_accounts_virtual_list.yaml
-  /v1/direct-debits/status:
-    $ref: paths/v1_direct-debits_status.yaml
 components:
   securitySchemes:
     BearerAuth:

@@ -14,10 +14,10 @@
   },
   "scripts": {
     "sync": "node scripts/sync-from-docs.mjs",
-    "lint": "redocly lint openapi/openapi.yaml",
-    "bundle": "redocly bundle openapi/openapi.yaml -o dist/openapi.yaml && redocly bundle openapi/openapi.yaml -o dist/openapi.json",
-    "preview": "redocly preview-docs openapi/openapi.yaml",
-    "stats": "redocly stats openapi/openapi.yaml"
+    "lint": "redocly lint nomba",
+    "bundle": "redocly bundle nomba -o dist/openapi.yaml && redocly bundle nomba -o dist/openapi.json",
+    "docs": "redocly build-docs nomba -o dist/index.html",
+    "stats": "redocly stats nomba"
   },
   "devDependencies": {
     "@redocly/cli": "2.73.0",

@@ -7,3 +7,19 @@ extends:
 apis:
   nomba:
     root: openapi/openapi.yaml
+    # Applied to the bundled spec only, so openapi/ stays a copy of the docs.
+    # The docs title this "Vendor API" with no description.
+    decorators:
+      info-override:
+        title: Nomba API
+        description: >-
+          Accounts, virtual accounts, checkout, transfers, direct debits,
+          terminals, transactions and bill payments. Generated from
+          https://developer.nomba.com.
+        contact:
+          name: Nomba Developers
+          url: https://developer.nomba.com
+          email: docs@nomba.com
+        license:
+          name: MIT
+          url: https://opensource.org/licenses/MIT
