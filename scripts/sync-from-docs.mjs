@@ -21,6 +21,8 @@ const PAGE = /^````yaml ([a-z]+) (\S+)\n([\s\S]*?)^````/m;
 const NOT_ENDPOINTS = new Set(["introduction.md", "get-api-keys.md"]);
 const REDOCLY = fileURLToPath(new URL("../node_modules/.bin/redocly", import.meta.url));
 const check = process.argv.includes("--check");
+// Keys that would reach Object.prototype when used to index a plain object.
+const UNSAFE_KEYS = new Set(["__proto__", "constructor", "prototype"]);
 
 async function get(url) {
   const res = await fetch(url, { signal: AbortSignal.timeout(30_000) });
@@ -52,7 +54,11 @@ const problems = [];
 
 // Merge one entry, recording a problem if a different definition already exists.
 function put(target, key, value, label) {
-  if (key in target && !isDeepStrictEqual(target[key], value)) {
+  if (UNSAFE_KEYS.has(key)) {
+    problems.push(`unsafe key: ${label}`);
+    return;
+  }
+  if (Object.hasOwn(target, key) && !isDeepStrictEqual(target[key], value)) {
     problems.push(`conflicting definition: ${label}`);
   }
   target[key] = value;
@@ -79,6 +85,10 @@ urls.forEach((url, i) => {
     }
   }
   for (const [section, entries] of Object.entries(frag.components ?? {})) {
+    if (UNSAFE_KEYS.has(section)) {
+      problems.push(`unsafe key: components.${section} (${url})`);
+      continue;
+    }
     spec.components[section] ??= {};
     for (const [name, value] of Object.entries(entries)) {
       put(spec.components[section], name, value, `components.${section}.${name} (${url})`);
