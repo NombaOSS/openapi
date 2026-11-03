@@ -27,7 +27,7 @@ mv .redocly.lint-ignore.yaml /tmp/ && npm run lint; mv /tmp/.redocly.lint-ignore
 | Tag used but not declared | `Cable & Bill Payments` (1 operation) |
 | No tag descriptions | All 13 tags |
 | No webhooks | `payment_success` and other events are documented in prose only. Add a `webhooks` section (needs OpenAPI 3.1) or `x-webhooks` |
-| Info block | Docs title is `Vendor API` with an empty description. The sync script overrides both |
+| Info block | Docs title is `Vendor API` with an empty description and no license. `redocly.yaml` overrides it in the release files |
 
 ## Wrong examples or schemas
 
