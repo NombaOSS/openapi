@@ -12,5 +12,8 @@ OpenAPI 3.0 spec for the Nomba API, generated from the API reference at develope
 - The docs are the source of truth. Prefer fixing the docs and running `npm run sync` over hand-editing `openapi/`; a hand edit makes `npm run sync -- --check` fail until the docs catch up.
 - Never add entries to `.redocly.lint-ignore.yaml`. Remove them as problems are fixed, and update `ALIGNMENT.md`.
 
+## Releasing
+Never create tags or Releases by hand; see `RELEASING.md`.
+
 ## Before pushing
 `npm run lint && npm run bundle`

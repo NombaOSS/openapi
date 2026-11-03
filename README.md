@@ -67,7 +67,7 @@ CI lints and bundles every pull request and checks for drift against the docs ev
 
 ## Releasing
 
-Bump `version` in `package.json`, add a `CHANGELOG.md` entry, merge, then tag `vX.Y.Z` on main. The release workflow checks the tag matches `package.json`, bundles the spec and attaches both files to a GitHub release.
+Automated: merge a `chore: release X.Y.Z` PR and approve the `release` deployment. See [RELEASING.md](RELEASING.md).
 
 ## License
 
