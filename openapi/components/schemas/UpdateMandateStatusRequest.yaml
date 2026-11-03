@@ -1,0 +1,15 @@
+type: object
+properties:
+  mandateId:
+    type: string
+    description: Unique identifier of the mandate
+  status:
+    type: string
+    enum:
+      - SUSPEND
+      - ACTIVE
+      - DELETE
+    description: New status of the mandate
+required:
+  - mandateId
+  - status

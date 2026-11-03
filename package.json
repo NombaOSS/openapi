@@ -1,0 +1,26 @@
+{
+  "name": "@nombaoss/openapi",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpenAPI specification for the Nomba API",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NombaOSS/openapi.git"
+  },
+  "scripts": {
+    "sync": "node scripts/sync-from-docs.mjs",
+    "lint": "redocly lint openapi/openapi.yaml",
+    "bundle": "redocly bundle openapi/openapi.yaml -o dist/openapi.yaml && redocly bundle openapi/openapi.yaml -o dist/openapi.json",
+    "preview": "redocly preview-docs openapi/openapi.yaml",
+    "stats": "redocly stats openapi/openapi.yaml"
+  },
+  "devDependencies": {
+    "@redocly/cli": "2.73.0",
+    "yaml": "2.9.1"
+  }
+}

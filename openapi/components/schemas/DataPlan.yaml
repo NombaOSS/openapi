@@ -1,0 +1,15 @@
+type: object
+properties:
+  plan:
+    type: string
+    example: 1GB + 1.5mins 1 day Plan
+  amount:
+    type: integer
+    format: int64
+    example: 500
+  productId:
+    type: string
+    description: >-
+      The unique identifier for this data plan. Pass this value as `productId`
+      when purchasing to select this exact bundle.
+    example: mtn16

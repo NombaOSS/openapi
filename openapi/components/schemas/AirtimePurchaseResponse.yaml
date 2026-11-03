@@ -1,0 +1,44 @@
+type: object
+properties:
+  amount:
+    type: number
+    format: double
+    description: The airtime amount to be purchased
+    example: 200
+  timeCreated:
+    type: string
+    description: The Date and Time of transaction creation
+    format: date-time
+    example: '2023-09-04T07:09:06.900Z'
+  type:
+    type: string
+    description: The classification for this type of transaction
+    example: topup
+  meta:
+    type: object
+    description: Extra information about this transaction
+    example:
+      merchantTxRef: test1116
+      rrn: '240626232937'
+  status:
+    type: string
+    description: >-
+      The status of this transaction. `SUCCESS` means it completed; `PROCESSING`
+      means it is still being processed — listen for the webhook or requery the
+      transaction for the final status.
+    enum:
+      - SUCCESS
+      - PROCESSING
+    example: SUCCESS
+  id:
+    type: string
+    description: >-
+      The unique ID of the transaction, e.g.
+      `API-TOPUP-A6950-8c060b7c-4155-4e33-a846-101b49229c33`. Use it to requery
+      the transaction.
+    example: API-TOPUP-A6950-8c060b7c-4155-4e33-a846-101b49229c33
+required:
+  - amount
+  - timeCreated
+  - type
+  - status

@@ -1,0 +1,68 @@
+get:
+  description: >-
+    Returns available bank, institution, or mobile money providers. Use
+    isMobileMoney=false for bank/institution providers and isMobileMoney=true
+    for mobile money providers. Use code as institutionCode and displayName as
+    institutionName in Authorize Transfer.
+  operationId: List Institution Providers
+  parameters:
+    - description: Bearer token for authentication.
+      in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer <token>
+      required: true
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - description: >-
+        Set to true to return mobile money providers. Set to false to return
+        bank or institution providers.
+      in: query
+      name: isMobileMoney
+      schema:
+        type: boolean
+        example: false
+      required: false
+    - description: >-
+        ISO 3166-1 alpha-2 destination country code used to return providers for
+        a specific country.
+      in: query
+      name: countryIsoCode
+      schema:
+        type: string
+        example: US
+      required: false
+  responses:
+    '200':
+      description: Providers retrieved successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+              description:
+                type: string
+                example: Success
+              status:
+                type: boolean
+                example: false
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      example: access_bank
+                    displayName:
+                      type: string
+                      example: Access Bank

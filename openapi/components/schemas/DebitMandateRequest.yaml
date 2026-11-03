@@ -1,0 +1,11 @@
+type: object
+properties:
+  mandateId:
+    type: string
+    description: Unique identifier of the mandate to debit
+  amount:
+    type: string
+    description: Amount to be debited
+required:
+  - mandateId
+  - amount

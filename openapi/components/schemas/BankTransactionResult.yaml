@@ -1,0 +1,51 @@
+type: object
+properties:
+  amount:
+    type: number
+    format: double
+    description: Amount
+    example: 7000
+  currency:
+    type: string
+    description: Currency
+    enum:
+      - NGN
+    example: NGN
+  meta:
+    $ref: ./BankTransactionMetaObject.yaml
+  status:
+    type: string
+    description: Status
+    enum:
+      - SUCCESS
+      - PENDING_BILLING
+      - REFUND
+      - CANCELLED
+      - PAYMENT_FAILED
+      - REVERSED_BY_VENDOR
+    example: SUCCESS
+  timeUpdated:
+    type: string
+    format: date-time
+    description: Updated timestamp
+    example: '2023-09-08T19:05:21.000Z'
+  walletBalance:
+    type: number
+    format: double
+    description: The account balance
+    example: 285951
+  transactionType:
+    type: string
+    description: Transaction type
+    enum:
+      - CREDIT
+      - DEBIT
+    example: DEBIT
+required:
+  - amount
+  - currency
+  - meta
+  - status
+  - timeUpdated
+  - walletBalance
+  - transactionType

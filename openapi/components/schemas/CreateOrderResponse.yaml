@@ -1,0 +1,13 @@
+type: object
+properties:
+  checkoutLink:
+    type: string
+    description: Payment checkout link
+    example: https://ip:port/checkout/78388899938
+  orderReference:
+    type: string
+    description: The reference of the order created
+    example: 90e81e8a-bc14-4ebf-89c0-57da752cca58
+required:
+  - checkoutLink
+  - orderReference

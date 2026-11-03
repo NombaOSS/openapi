@@ -1,0 +1,57 @@
+get:
+  description: >-
+    Returns the list of mobile money providers supported for DRC inflow. Use the
+    returned code values as the topupVendor in the Initiate Mobile Money Inflow
+    request.
+  operationId: Fetch DRC Inflow Providers
+  parameters:
+    - description: Bearer token for authentication.
+      in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer <token>
+      required: true
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+  responses:
+    '200':
+      description: List of DRC inflow providers returned successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+              description:
+                type: string
+                example: Successful
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      description: >-
+                        The provider code to use as topupVendor when initiating
+                        an inflow.
+                      example: AIRTEL
+                    displayName:
+                      type: string
+                      description: Human-readable name of the provider.
+                      example: Airtel Money
+                example:
+                  - code: MPESA
+                    displayName: Mpesa
+                  - code: AIRTEL
+                    displayName: Airtel Money
+                  - code: ORANGE
+                    displayName: Orange Money

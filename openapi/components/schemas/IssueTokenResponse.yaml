@@ -1,0 +1,34 @@
+type: object
+description: A structure representing an authentication result.
+properties:
+  businessId:
+    type: string
+    description: >-
+      The accountId of the merchant/business that is connecting to the Nomba
+      system via API
+    example: 01a10aeb-d989-460a-bbde-9842f2b4320f
+  access_token:
+    type: string
+    description: >-
+      A JWT (Json Web Token) token used to grant access to resources on the
+      Nomba API.
+    example: eyJhbGciOiJIUzI1NiJ9.eyJHOjhmYWM4M2FjLTc2YjAtNDM1Zi1hYTM1LThkOTU3ZGQ5MjdkZCI6Ikc6OGZhYzgzYWMtNzZiMC00MzVmLWFhMzUtOGQ5NTdkZDkyN2RkIiwiUjpURUFNU19PV05FUiI6IlI6VEVBTVNfT1dORVIiLCJFbWFpbDp2aWN0b3JzaG9hZ2FAZ21haWwuY29tIjoiRW1haWw6dmljdG9yc2hvYWdhQGdtYWlsLmNvbSIsImlhdCI6MTY4MTkxODU3OSwic3ViIjoiNWUyNmNmYjAtNTI5Zi00MTdiLWI4ZDItYWJjNDcxZjRjOWRiIiwiZXhwIjoxNjgxOTIyMTc5fQ.lQOsyhR1gajKdzE9IHQEtxhQyUrArctEDZiP9pWVTFY
+    maxLength: 600
+    minLength: 300
+  refresh_token:
+    type: string
+    description: A Base64 Encoded String used to refresh an expired access_token
+    example: 01h4gdx2tctxfjgacbdwrcvs5d1688473602892
+    maxLength: 60
+    minLength: 30
+  expiresAt:
+    type: string
+    description: >-
+      The date and time this entity was created. This value uses Coordinated
+      Universal Time (UTC) and ISO 8601 format – `YYYY-MM-DDThh:mm:ssZ`.
+    example: '2022-07-08T14:33:00Z'
+required:
+  - businessId
+  - access_token
+  - refresh_token
+  - expiresAt

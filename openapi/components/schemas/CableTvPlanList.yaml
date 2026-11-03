@@ -1,0 +1,4 @@
+type: array
+description: List of available cable TV subscription plans
+items:
+  $ref: ./CableTvPlan.yaml

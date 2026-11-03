@@ -1,0 +1,9 @@
+type: object
+description: The request payload to cancel a checkout order
+properties:
+  orderReference:
+    type: string
+    description: The unique reference of the checkout order to cancel
+    example: OD-69923-2e102708-ee34-4a29-b713-a826ca928a12
+required:
+  - orderReference

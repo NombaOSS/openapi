@@ -1,0 +1,354 @@
+delete:
+  tags:
+    - Online Checkout
+  summary: Delete a saved card
+  description: >-
+    Delete a saved card. A deleted card can't be charged again. The request
+    sends a JSON body with DELETE, so check that your HTTP client doesn't drop
+    it.
+  operationId: Delete tokenized card data
+  parameters:
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        format: uuid
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/DeleteTokenizedCardDataRequest.yaml
+    description: The card to delete
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+                description: Response Code
+              description:
+                type: string
+                example: Success
+                description: Response description
+              data:
+                $ref: ../components/schemas/DeleteTokenizedCardDataResponse.yaml
+            required:
+              - code
+              - description
+              - data
+      description: Card deleted.
+      headers:
+        X-Rate-Limit-Limit:
+          description: The number of allowed requests in the current period
+          schema:
+            type: string
+            example: '40'
+        X-Rate-Limit-Remaining:
+          description: The number of remaining requests in the current period
+          schema:
+            type: string
+            example: '39'
+        X-Rate-Limit-Window:
+          description: The specified rate limit window
+          schema:
+            type: string
+            example: 1s
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: The request body sent by merchant did not pass the validation checks
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+  security:
+    - BearerAuth: []
+get:
+  tags:
+    - Online Checkout
+  summary: List saved cards
+  description: >-
+    List the cards your customers have saved. Filter by customer email, or page
+    through cards saved in a date range.
+  operationId: List all tokenized cards for merchant
+  parameters:
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        format: uuid
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - description: >-
+        The email address the card was saved with. When you send it, Nomba
+        returns all of that customer's cards in one response and ignores the
+        other query parameters.
+      example: abcde@gmail.com
+      in: query
+      name: customerEmail
+      schema:
+        type: string
+    - description: >-
+        Start date and time, based on the date the card was saved. Ignored when
+        `customerEmail` is sent.
+      example: '2023-08-08T00:00:00'
+      in: query
+      name: dateFrom
+      schema:
+        type: string
+    - description: >-
+        End date and time, based on the date the card was saved. Defaults to
+        now. Ignored when `customerEmail` is sent.
+      example: '2023-08-08T23:59:59'
+      in: query
+      name: dateTo
+      schema:
+        type: string
+    - description: >-
+        Page number to return. Omit it, or send `0`, for the first page. Ignored
+        when `customerEmail` is sent.
+      example: 0
+      in: query
+      name: page
+      schema:
+        type: integer
+        format: int32
+    - description: >-
+        Number of cards per page. Defaults to `50`. Ignored when `customerEmail`
+        is sent.
+      example: 50
+      in: query
+      name: limit
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+                description: Response Code
+              description:
+                type: string
+                example: Success
+                description: response description
+              data:
+                type: object
+                properties:
+                  hasNextPage:
+                    type: boolean
+                    description: '`true` if there are more cards to fetch'
+                    example: false
+                  nextPage:
+                    type: integer
+                    format: int32
+                    description: The page to request next. `0` if there are no more pages.
+                    example: 0
+                  tokenizedCardDataList:
+                    type: array
+                    description: The saved cards that match the request
+                    items:
+                      $ref: ../components/schemas/TokenizedCardData.yaml
+      description: OK - your request was successful.
+      headers:
+        X-Rate-Limit-Limit:
+          description: The number of allowed requests in the current period
+          schema:
+            type: string
+            example: '40'
+        X-Rate-Limit-Remaining:
+          description: The number of remaining requests in the current period
+          schema:
+            type: string
+            example: '39'
+        X-Rate-Limit-Window:
+          description: The specified rate limit window
+          schema:
+            type: string
+            example: 1s
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: The request body sent by merchant did not pass the validation checks
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+  security:
+    - BearerAuth: []
+post:
+  tags:
+    - Online Checkout
+  summary: Change the email linked to a saved card
+  description: >-
+    Change the email address linked to a saved card. This endpoint can't change
+    the card itself.
+  operationId: Update tokenized card data
+  parameters:
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        format: uuid
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/UpdateTokenizedCardDataRequest.yaml
+    description: The card to update, and the email addresses
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+                description: Response Code
+              description:
+                type: string
+                example: Success
+                description: Response description
+              data:
+                $ref: ../components/schemas/UpdateTokenizedCardDataResponse.yaml
+            required:
+              - code
+              - description
+              - data
+      description: Email address changed.
+      headers:
+        X-Rate-Limit-Limit:
+          description: The number of allowed requests in the current period
+          schema:
+            type: string
+            example: '40'
+        X-Rate-Limit-Remaining:
+          description: The number of remaining requests in the current period
+          schema:
+            type: string
+            example: '39'
+        X-Rate-Limit-Window:
+          description: The specified rate limit window
+          schema:
+            type: string
+            example: 1s
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: The request body sent by merchant did not pass the validation checks
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+  security:
+    - BearerAuth: []

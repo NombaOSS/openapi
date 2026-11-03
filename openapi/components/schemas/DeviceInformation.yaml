@@ -1,0 +1,39 @@
+type: object
+description: Contains browser information for the device making the api calls
+properties:
+  httpBrowserLanguage:
+    type: string
+    description: Browser language
+    example: en-GB
+  httpBrowserJavaEnabled:
+    type: boolean
+    description: true if Java is enabled in the browser in use
+    example: 'true'
+  httpBrowserJavaScriptEnabled:
+    type: boolean
+    description: true if Javascript is enabled in the browser in use
+    example: 'true'
+  httpBrowserColorDepth:
+    type: string
+    description: Browser color depth
+    example: '30'
+  httpBrowserScreenHeight:
+    type: string
+    description: Browser scren height
+    example: '900'
+  httpBrowserScreenWidth:
+    type: string
+    description: Browser screen weidth
+    example: '1500'
+  httpBrowserTimeDifference:
+    type: string
+    description: Browser time difference
+    example: '-60'
+  userAgentBrowserValue:
+    type: string
+    description: Browser user agent
+    example: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)
+  deviceChannel:
+    type: string
+    description: Device channel
+    example: Browser

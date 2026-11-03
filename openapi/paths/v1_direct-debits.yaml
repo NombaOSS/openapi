@@ -1,0 +1,99 @@
+post:
+  tags:
+    - Direct Debits
+  summary: Create a Direct Debit Mandate
+  description: Creates a new direct debit mandate for a customer.
+  parameters:
+    - name: accountId
+      in: header
+      required: true
+      schema:
+        type: string
+      description: The vendor account ID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/CreateMandateRequest.yaml
+        example:
+          customerAccountNumber: '0212343456'
+          bankCode: '101'
+          customerName: Kolapo Ojo
+          customerAddress: maryland Ikeja computer village
+          customerAccountName: Kolapo Ojo
+          amount: 100
+          frequency: WEEKLY
+          narration: test e mandate response
+          customerPhoneNumber: '08074332234'
+          merchantReference: '12003074001'
+          startDate: 2025-08-29T14:58
+          endDate: 2025-08-30T10:40
+          customerEmail: kolapo@gmail.com
+          startImmediately: true
+  responses:
+    '200':
+      description: Mandate created successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/CreateMandateResponse.yaml
+          example:
+            responseMessage: Success
+            responseCode: '00'
+            data:
+              mandateId: e50b7835-502c-4cfe-9893-47657633d7a2
+              merchantReference: '12003074001'
+              phoneNumber: '08073345562'
+              description: >-
+                Welcome to NIBSS e-mandate authentication service, a seamless
+                and convenient authentication experience. Kindly proceed with a
+                token payment of N50.00 into account number 9880218357 with
+                Paystack-Titan Bank. This payment will trigger the
+                authentication of your mandate. Thank You
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: The request body sent by merchant did not pass the validation checks
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+    default:
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: Resource not available
+  security:
+    - BearerAuth: []

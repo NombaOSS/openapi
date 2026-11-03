@@ -1,0 +1,18 @@
+type: object
+description: A structure representing a bank account lookup request
+properties:
+  accountNumber:
+    type: string
+    description: The account number to be looked up.
+    example: '0554772814'
+    maxLength: 10
+    minLength: 10
+  bankCode:
+    type: string
+    description: >-
+      The bankCode of the bank the account number belongs to. This can be
+      obtained from a call to `/v1/transfers/banks` 
+    example: '053'
+required:
+  - accountNumber
+  - bankCode

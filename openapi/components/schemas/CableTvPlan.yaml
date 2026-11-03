@@ -1,0 +1,14 @@
+type: object
+properties:
+  subScriptionType:
+    type: string
+    description: The subscription plan type (e.g., COMPACT, PREMIUM, YANGA)
+    example: COMPACT
+  amount:
+    type: number
+    format: double
+    description: The amount for the subscription plan
+    example: 19000
+required:
+  - subScriptionType
+  - amount

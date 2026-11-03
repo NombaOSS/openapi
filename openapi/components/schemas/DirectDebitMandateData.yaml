@@ -1,0 +1,34 @@
+type: object
+properties:
+  status:
+    type: string
+  customerAccountNumber:
+    type: string
+  customerAccountName:
+    type: string
+  bankCode:
+    type: string
+  amount:
+    type: number
+  customerName:
+    type: string
+  customerAddress:
+    type: string
+  customerEmail:
+    type: string
+  customerPhoneNumber:
+    type: string
+  merchantReference:
+    type: string
+  frequency:
+    type: string
+  startDate:
+    type: string
+    format: date-time
+  endDate:
+    type: string
+    format: date-time
+  mandateAdviceStatus:
+    type: string
+  mandateId:
+    type: string

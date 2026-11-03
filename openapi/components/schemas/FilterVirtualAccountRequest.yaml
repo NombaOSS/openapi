@@ -1,0 +1,42 @@
+type: object
+properties:
+  accountName:
+    type: string
+    description: Account holder's name
+    minLength: 8
+    maxLength: 64
+    example: Daniel Scorsese
+  accountRef:
+    type: string
+    description: Account reference
+    minLength: 16
+    maxLength: 64
+    example: 1oWbJQQHLyQqqf1SwxjSpudeA21
+  bvn:
+    type: string
+    description: Bank Verification Number (BVN)
+    minLength: 11
+    maxLength: 11
+    example: '12234412345'
+  bankAccountNumber:
+    type: string
+    description: Bank account number
+    example: '9391076543'
+  dateCreatedFrom:
+    type: string
+    format: date-time
+    description: Date created from
+    example: '2023-08-30T14:56:59.000Z'
+  dateCreatedTo:
+    type: string
+    format: date-time
+    description: Date created to
+    example: '2024-08-30T14:56:59.000Z'
+  expired:
+    type: boolean
+    description: Whether the virtual account is expired or not
+    example: false
+  resourceAcquired:
+    type: boolean
+    description: Whether the virtual account is in use or not
+    example: false

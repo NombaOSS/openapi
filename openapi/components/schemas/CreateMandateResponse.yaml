@@ -1,0 +1,35 @@
+type: object
+properties:
+  responseMessage:
+    type: string
+    example: Success
+  responseCode:
+    type: string
+    example: '00'
+  data:
+    type: object
+    properties:
+      mandateId:
+        type: string
+        example: e50b7835-502c-4cfe-9893-47657633d7a2
+      merchantReference:
+        type: string
+        example: '12003074001'
+      phoneNumber:
+        type: string
+        example: '08073345562'
+      description:
+        type: string
+        example: >-
+          Welcome to NIBSS e-mandate authentication service, a seamless and
+          convenient authentication experience. Kindly proceed with a token
+          payment of N50.00...
+    required:
+      - mandateId
+      - merchantReference
+      - phoneNumber
+      - description
+required:
+  - responseMessage
+  - responseCode
+  - data

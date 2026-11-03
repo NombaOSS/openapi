@@ -1,0 +1,21 @@
+type: object
+description: >-
+  Authentication data returned from the payment gateway when the payment card
+  requires 3D Secure authentication. This data will be passed to the
+properties:
+  jwt:
+    type: string
+    description: jwt token
+    example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
+  md:
+    type: string
+    description: encryption key is data encrption is in use, else empty string
+    example: '6775843012'
+  acsUrl:
+    type: string
+    description: the order reference returned when the order was created
+    example: https://ip:port/merchant.com/callback
+  termUrl:
+    type: string
+    description: the order reference returned when the order was created
+    example: https://ip:port/merchant.com/callback

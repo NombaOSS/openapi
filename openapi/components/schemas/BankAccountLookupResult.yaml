@@ -1,0 +1,13 @@
+type: object
+description: A structure representing a bank account lookup result
+properties:
+  accountNumber:
+    type: string
+    description: The account number already looked up.
+    example: '0554772814'
+    maxLength: 10
+    minLength: 10
+  accountName:
+    type: string
+    description: The name on the account.
+    example: M.A Animashaun

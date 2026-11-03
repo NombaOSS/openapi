@@ -1,0 +1,43 @@
+get:
+  tags:
+    - Direct Debits
+  summary: Get Mandate Status
+  description: Fetches the status of a specific mandate by mandateId.
+  parameters:
+    - name: accountId
+      in: header
+      required: true
+      schema:
+        type: string
+      description: The vendor account ID
+    - name: mandateId
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Unique identifier of the mandate
+  responses:
+    '200':
+      description: Mandate status fetched successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/GetMandateStatusResponse.yaml
+          example:
+            code: '00'
+            description: SUCCESS
+            data:
+              customerAccountName: Kolapo Ojo
+              mandateId: c93e1e1b-85f5-461e-8b9b-74ee091d4aa4
+              customerAccountNumber: '80793414434'
+              mandateStatus: Active
+              rejectionComment: Expired e-mandate
+              mandateAdviceStatus: Advise not sent
+            message: SUCCESS
+            status: true
+    '400':
+      description: Invalid mandateId provided
+    '401':
+      description: Unauthorized - invalid or missing token
+  security:
+    - BearerAuth: []

@@ -1,0 +1,18 @@
+type: object
+properties:
+  tokenKey:
+    type: string
+    description: The card token
+    example: '5844858382'
+  currentEmailAddress:
+    type: string
+    description: The email address currently linked to the card
+    example: email@email.com
+  newEmailAddress:
+    type: string
+    description: The email address to link to the card instead
+    example: new.email@email.com
+required:
+  - tokenKey
+  - currentEmailAddress
+  - newEmailAddress

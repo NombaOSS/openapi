@@ -1,0 +1,419 @@
+# This file instructs Redocly's linter to ignore the rules contained for specific parts of your API.
+# See https://redocly.com/docs/cli/ for more information.
+openapi/openapi.yaml:
+  tag-description:
+    - '#/tags/0/description'
+    - '#/tags/1/description'
+    - '#/tags/2/description'
+    - '#/tags/3/description'
+    - '#/tags/4/description'
+    - '#/tags/5/description'
+    - '#/tags/6/description'
+    - '#/tags/7/description'
+    - '#/tags/8/description'
+    - '#/tags/9/description'
+    - '#/tags/10/description'
+    - '#/tags/11/description'
+    - '#/tags/12/description'
+  no-identical-paths:
+    - '#/paths/~1v1~1accounts~1virtual~1{identifier}'
+  no-ambiguous-paths:
+    - '#/paths/~1v1~1accounts~1virtual~1{subAccountId}'
+    - '#/paths/~1v1~1accounts~1virtual~1{identifier}'
+openapi/paths/v1_accounts_balance.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_accounts_parent.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_accounts_{subAccountId}_balance.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_accounts_sub-account-details.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  no-invalid-parameter-examples:
+    - '#/get/parameters/2/example'
+openapi/paths/v1_accounts_{accountId}_terminals.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_accounts_terminals.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_bill_data-plan_{telco}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v2_bill_topup.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_topup.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_bill_topup_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_topup_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_bill_data.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_data.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_bill_data_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_data_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_auth_token_issue.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_auth_token_refresh.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_auth_token_revoke.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_betting_providers.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_bill_cableTvProduct.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_bill_electricity_discos.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v2_bill_betting.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_betting.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_bill_betting_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_betting_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_bill_electricity.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_electricity.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_bill_electricity_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_electricity_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_bill_cabletv.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_cabletv.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_bill_cabletv_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_bill_cabletv_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_checkout_transaction_cancel.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/components/schemas/CheckoutCancelTransactionRequest.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/forceCancel/example'
+openapi/components/schemas/CheckoutDataResponse.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/success/example'
+openapi/paths/v1_checkout_get-checkout-kta_{orderReference}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_checkout_confirm-transaction-receipt.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/components/schemas/CheckoutTransactionDetailsResponse.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/status/example'
+openapi/components/schemas/OrderDetailsObject.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/amount/example'
+openapi/paths/v1_checkout_order_{orderReference}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/components/schemas/GetOrderDetails.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/hasSavedCards/example'
+openapi/paths/v1_checkout_user-card_{orderReference}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_checkout_user-card_saved-card_auth.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_checkout_user-card_auth.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_checkout_resend-otp.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_checkout_checkout-card-detail.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/components/schemas/SubmitCardDetails.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/cardDetails/example'
+    - '#/properties/saveCard/example'
+openapi/components/schemas/DeviceInformation.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/httpBrowserJavaEnabled/example'
+    - '#/properties/httpBrowserJavaScriptEnabled/example'
+openapi/components/schemas/SubmitCardDetailsResponse.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/status/example'
+openapi/paths/v1_checkout_checkout-card-otp.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_checkout_user-card.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_direct-debits.yaml:
+  operation-operationId:
+    - '#/post/operationId'
+  no-invalid-media-type-examples:
+    - '#/post/requestBody/content/application~1json/example/startDate'
+    - '#/post/requestBody/content/application~1json/example/endDate'
+openapi/components/schemas/CreateMandateRequest.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/startDate/example'
+    - '#/properties/endDate/example'
+openapi/paths/v1_direct-debits_debit-mandate.yaml:
+  operation-operationId:
+    - '#/post/operationId'
+openapi/paths/v1_direct-debits_mandates.yaml:
+  operation-operationId:
+    - '#/get/operationId'
+openapi/paths/v1_direct-debits_update-status.yaml:
+  operation-operationId:
+    - '#/put/operationId'
+openapi/paths/v1_global-collection_drc_inflow_providers.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  operation-summary:
+    - '#/get/summary'
+  operation-4xx-response:
+    - '#/get/responses'
+openapi/paths/v1_global-collection_transactions_{transactionId}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  operation-summary:
+    - '#/get/summary'
+  operation-4xx-response:
+    - '#/get/responses'
+openapi/paths/v1_global-collection_inflow_initiate.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+  operation-summary:
+    - '#/post/summary'
+  operation-4xx-response:
+    - '#/post/responses'
+openapi/paths/v1_global-payout_exchange_authorize.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+  operation-summary:
+    - '#/post/summary'
+  operation-4xx-response:
+    - '#/post/responses'
+openapi/paths/v1_global-payout_transfer_authorize.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+  operation-summary:
+    - '#/post/summary'
+  operation-4xx-response:
+    - '#/post/responses'
+openapi/paths/v1_global-payout_money_convert.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+  operation-summary:
+    - '#/post/summary'
+  operation-4xx-response:
+    - '#/post/responses'
+openapi/paths/v1_sandbox_global-payout_accounts_{accountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  operation-summary:
+    - '#/get/summary'
+  operation-4xx-response:
+    - '#/get/responses'
+openapi/paths/v1_global-payout_accounts_{accountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  operation-summary:
+    - '#/get/summary'
+openapi/paths/v1_sandbox_global-payout_accounts.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  operation-summary:
+    - '#/get/summary'
+  operation-4xx-response:
+    - '#/get/responses'
+openapi/paths/v1_global-payout_accounts.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  operation-summary:
+    - '#/get/summary'
+  operation-4xx-response:
+    - '#/get/responses'
+openapi/paths/v1_global-payout_exchange-rates.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  operation-summary:
+    - '#/get/summary'
+  operation-4xx-response:
+    - '#/get/responses'
+openapi/paths/v1_global-payout_transactions_{transactionId}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  operation-summary:
+    - '#/get/summary'
+  operation-4xx-response:
+    - '#/get/responses'
+openapi/paths/v1_global-payout_bank_providers.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  operation-summary:
+    - '#/get/summary'
+  operation-4xx-response:
+    - '#/get/responses'
+openapi/paths/v1_global-payout_payment-methods.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+  operation-summary:
+    - '#/get/summary'
+  operation-4xx-response:
+    - '#/get/responses'
+openapi/paths/v1_checkout_order_cancel.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_checkout_tokenized-card-payment.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/components/schemas/Order.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/amount/example'
+    - '#/properties/splitRequest/properties/splitList/items/properties/value/example'
+openapi/paths/v1_checkout_order.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/components/schemas/CreateOrderRequest.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/tokenizeCard/example'
+openapi/paths/v1_checkout_tokenized-card-data.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+    - '#/post/operationId'
+    - '#/delete/operationId'
+openapi/paths/v1_checkout_transaction.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/components/schemas/CheckoutTransaction.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/success/example'
+openapi/components/schemas/OrderDetails.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/amount/example'
+openapi/components/schemas/CheckoutTransactionDetails.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/tokenizedCardPayment/example'
+openapi/paths/v1_checkout_refund.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_transactions_accounts_{subAccountId}_single.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_transactions_accounts_single.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_transactions_requery_{sessionId}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_terminals_assign_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_terminals_assign.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_terminals_payment-request_{terminalId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+  path-parameters-defined:
+    - '#/post/parameters'
+openapi/components/schemas/TerminalPaymentRequest.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/amount/example'
+openapi/paths/v1_terminals_unassign.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_terminals_unassign_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_transactions_bank.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_transactions_accounts.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+    - '#/post/operationId'
+openapi/paths/v1_transactions_accounts_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+    - '#/post/operationId'
+openapi/paths/v1_transfers_banks.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+openapi/paths/v1_transfers_bank_lookup.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_transfers_bank.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+  no-invalid-schema-examples:
+    - '#/post/responses/200/content/application~1json/schema/properties/status/example'
+openapi/paths/v2_transfers_bank_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_transfers_wallet_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v2_transfers_wallet.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_accounts_virtual_{subAccountId}.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/components/schemas/CreateVirtualAccountRequest.yaml:
+  no-invalid-schema-examples:
+    - '#/properties/expectedAmount/example'
+openapi/components/schemas/CreateVirtualAccountResponse.yaml:
+  no-required-schema-properties-undefined:
+    - '#/required/1'
+    - '#/required/5'
+    - '#/required/6'
+    - '#/required/8'
+openapi/paths/v1_accounts_virtual.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_accounts_virtual_{identifier}.yaml:
+  operation-operationId-url-safe:
+    - '#/get/operationId'
+    - '#/put/operationId'
+    - '#/delete/operationId'
+openapi/paths/v1_accounts_virtual_list.yaml:
+  operation-operationId-url-safe:
+    - '#/post/operationId'
+openapi/paths/v1_direct-debits_status.yaml:
+  operation-operationId:
+    - '#/get/operationId'

@@ -1,0 +1,8 @@
+type: object
+properties:
+  orderReference:
+    type: string
+    description: order reference
+    example: c4307d58-2513-41d8-b7f7-dfecd5f9fdbe
+required:
+  - orderReference

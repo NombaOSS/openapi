@@ -1,0 +1,27 @@
+type: object
+description: Represents a request to initiate a payment on a physical payment terminal.
+properties:
+  merchantTxRef:
+    type: string
+    description: The unique identifier for the order associated with the payment.
+    example: '55555555'
+  amount:
+    type: number
+    description: >-
+      The total amount to be charged on the terminal, in the smallest currency
+      unit (e.g., cents, kobo).
+    example: '1000'
+  currency:
+    type: string
+    minLength: 3
+    maxLength: 3
+    description: Currency code based on the ISO4217 standard
+    enum:
+      - NGN
+      - USD
+      - CDF
+    example: NGN
+required:
+  - merchantTxRef
+  - amount
+  - currency

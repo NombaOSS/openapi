@@ -1,0 +1,24 @@
+type: object
+description: The request object for refunding a checkout transaction
+properties:
+  transactionId:
+    type: string
+    description: The ID of the transaction to be refunded
+    example: TXN-123456789
+  amount:
+    type: number
+    format: double
+    description: The amount to be refunded
+    example: 5000
+  accountNumber:
+    type: string
+    description: The account number for the refund
+    example: '0123456789'
+    maxLength: 10
+    minLength: 10
+  bankCode:
+    type: string
+    description: The bank code for the refund
+    example: '058'
+required:
+  - transactionId

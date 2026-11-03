@@ -1,0 +1,133 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Transaction ID
+    example: POS-WITHDRAW-DFC05-693cd007-cd1e-4ea6-8b79-5f5c4d7a83ea
+  status:
+    type: string
+    description: >-
+      Transaction status.
+
+
+      - `SUCCESS`: the service was delivered to the destination. Don't refund
+      your customer.
+
+      - `REFUND`: the funds were returned to your Nomba wallet. Refund your
+      customer.
+
+      - `CANCELLED`: the transaction will not proceed. Contact support.
+
+      - `PAYMENT_FAILED`: the debit failed and may be retried. Wait for the
+      webhook.
+
+      - `REVERSED_BY_VENDOR`: the transaction may be retried via another vendor.
+      Wait for the webhook.
+
+      - `PENDING_BILLING`: the transaction is still processing. Wait for the
+      webhook.
+    enum:
+      - SUCCESS
+      - PENDING_BILLING
+      - REFUND
+      - CANCELLED
+      - PAYMENT_FAILED
+      - REVERSED_BY_VENDOR
+    example: SUCCESS
+  amount:
+    type: number
+    format: double
+    description: Transaction amount
+    example: 4000
+  fixedCharge:
+    type: number
+    format: double
+    description: Fixed charge
+    example: 0
+  source:
+    type: string
+    description: Transaction source
+    enum:
+      - api
+      - pos
+      - web
+      - android_app
+      - ios_app
+    example: pos
+  type:
+    type: string
+    description: Transaction type
+    enum:
+      - withdrawal
+      - purchase
+      - transfer
+      - p2p
+      - online_checkout
+      - qrt_credit
+      - qrt_debit
+    example: withdrawal
+  gatewayMessage:
+    type: string
+    description: Gateway message
+    example: SUCCESS
+  customerBillerId:
+    type: string
+    description: Customer biller ID
+    example: 539983 **** **** 5118
+  timeCreated:
+    type: string
+    format: date-time
+    description: Creation timestamp
+    example: '2026-03-08T19:26:34.657000Z'
+  posTid:
+    type: string
+    description: POS terminal ID
+    example: 2KUD4AKB
+  terminalId:
+    type: string
+    description: Terminal ID
+    example: 2KUD4AKB
+  providerTerminalId:
+    type: string
+    description: Provider terminal ID
+    example: 2KUD4AKB
+  rrn:
+    type: string
+    description: RRN (Retrieval Reference Number)
+    example: '230908202632'
+  posSerialNumber:
+    type: string
+    description: POS serial number
+    example: '91230309116826'
+  posTerminalLabel:
+    type: string
+    description: POS terminal label
+    example: KEB MUSA ABUBAKAR
+  stan:
+    type: string
+    description: STAN (System Trace Audit Number)
+    example: '556734'
+  paymentVendorReference:
+    type: string
+    description: Payment vendor reference
+    example: 2KUD4AKB230908202632
+  userId:
+    type: string
+    description: User ID
+    example: dfc05ca1-4e75-41dd-8e41-2d362d565893
+  posRrn:
+    type: string
+    description: POS RRN (Retrieval Reference Number)
+    example: '230908202632'
+  merchantTxRef:
+    type: string
+    description: Merchant transaction reference
+    example: c90d-4b25-ad0f
+required:
+  - id
+  - status
+  - amount
+  - source
+  - type
+  - gatewayMessage
+  - timeCreated

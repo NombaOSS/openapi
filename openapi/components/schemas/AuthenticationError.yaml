@@ -1,0 +1,11 @@
+type: object
+description: Authentication Error response.
+properties:
+  code:
+    type: string
+    description: API error code.
+    example: '401'
+  description:
+    type: string
+    description: Additional details about the error.
+    example: Unauthorized

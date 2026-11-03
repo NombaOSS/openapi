@@ -1,0 +1,11 @@
+type: object
+description: The Checkout request object
+properties:
+  order:
+    $ref: ./Order.yaml
+  tokenizeCard:
+    type: boolean
+    description: Determines if the card used for payment is to be tokenized
+    example: 'true'
+required:
+  - order

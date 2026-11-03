@@ -1,0 +1,14 @@
+type: object
+description: The response object for checkout operations
+properties:
+  success:
+    type: boolean
+    description: Indicates whether the operation was successful
+    example: true
+  message:
+    type: string
+    description: A message describing the result of the operation
+    example: Refund processed successfully
+required:
+  - success
+  - message

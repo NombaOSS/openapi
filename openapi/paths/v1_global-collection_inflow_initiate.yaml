@@ -1,0 +1,87 @@
+post:
+  description: Trigger a mobile money collection request from a customer.
+  operationId: Initiate Mobile Money Inflow
+  parameters:
+    - description: Bearer token for authentication.
+      in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer <token>
+      required: true
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - phoneNumber
+            - callbackUrl
+            - amount
+            - currency
+            - topupVendor
+          properties:
+            phoneNumber:
+              type: string
+              example: 0980802xxx
+            callbackUrl:
+              type: string
+              example: https://your-server.com/webhook/collection
+            amount:
+              type: number
+              example: 10
+            currency:
+              type: string
+              example: CDF
+            topupVendor:
+              type: string
+              example: AIRTEL
+              description: Mobile money network provider (e.g. AIRTEL, MPESA).
+            idempotencyKey:
+              type: string
+              description: >-
+                A client-generated key used to safely retry the request without
+                risk of duplicate charges. If not provided, the server generates
+                one automatically and returns it in the response.
+              example: a8f3d2c1-5b9e-4f7a-b2d6-1c8e3f5a9d0b
+  responses:
+    '200':
+      description: Inflow initiated successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+              description:
+                type: string
+                example: Successful
+              data:
+                type: object
+                properties:
+                  transactionReference:
+                    type: string
+                    example: a822e327-4bcd-40ec-ac61-ed3622eac000
+                  status:
+                    type: string
+                    example: PENDING
+                  message:
+                    type: string
+                    example: success
+                  idempotencyKey:
+                    type: string
+                    description: >-
+                      The idempotency key used for this request — either the
+                      value you provided or a server-generated UUID. Store this
+                      and include it on any retry.
+                    example: a8f3d2c1-5b9e-4f7a-b2d6-1c8e3f5a9d0b

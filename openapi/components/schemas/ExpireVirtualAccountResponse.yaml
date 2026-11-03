@@ -1,0 +1,8 @@
+type: object
+properties:
+  expired:
+    type: boolean
+    description: Successfully updated
+    example: true
+required:
+  - expired

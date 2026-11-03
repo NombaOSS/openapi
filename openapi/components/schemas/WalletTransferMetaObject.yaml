@@ -1,0 +1,19 @@
+type: object
+properties:
+  merchantTxRef:
+    type: string
+    description: Merchant transaction reference
+    example: 3JVW2xJCjj443oannREBuTaXDdji
+  api_client_id:
+    type: string
+    description: API client ID
+    example: 6a7bed88-7c93-4a1c-a445-f88edbca6489
+  api_account_id:
+    type: string
+    description: API account ID
+    example: 01a10aeb-d989-460a-bbde-9842f2b4320f
+  rrn:
+    type: string
+    description: RRN (Retrieval Reference Number)
+    example: '230908151711'
+description: Transaction meta data

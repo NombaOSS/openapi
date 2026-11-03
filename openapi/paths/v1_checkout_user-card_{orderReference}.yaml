@@ -1,0 +1,101 @@
+get:
+  tags:
+    - Charge
+  summary: Get user saved cards
+  description: >-
+    Use this endpoint to Get a user's saved cards. Requires user OTP send to the
+    user after calling /checkout/user-card/saved-card/auth
+  operationId: Fetch User saved cards
+  parameters:
+    - description: Order referene
+      example: 693cd007-cd1e-4ea6-8b79-5f5c4d7a83ea
+      in: path
+      name: orderReference
+      required: true
+      schema:
+        type: string
+    - description: otp sent to the user's mobile number
+      example: '1234'
+      in: query
+      name: otp
+      required: true
+      schema:
+        type: string
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+                description: Response Code
+              description:
+                type: string
+                example: Success
+                description: Response description
+              data:
+                $ref: ../components/schemas/TokenizedCardDataList.yaml
+            required:
+              - code
+              - description
+              - data
+      description: OK - your request was successful.
+      headers:
+        X-Rate-Limit-Limit:
+          description: The number of allowed requests in the current period
+          schema:
+            type: string
+            example: '40'
+        X-Rate-Limit-Remaining:
+          description: The number of remaining requests in the current period
+          schema:
+            type: string
+            example: '39'
+        X-Rate-Limit-Window:
+          description: The specified rate limit window
+          schema:
+            type: string
+            example: 1s
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: The request body sent by merchant did not pass the validation checks
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+  security:
+    - BearerAuth: []

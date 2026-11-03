@@ -1,0 +1,35 @@
+type: object
+properties:
+  code:
+    type: string
+    example: '00'
+  description:
+    type: string
+    example: SUCCESS
+  data:
+    type: object
+    properties:
+      mandateId:
+        type: string
+        example: 89b0efc0-dde5-49e2-8bde-5523ae081c43
+      status:
+        type: string
+        example: SUCCESS
+      amount:
+        type: string
+        example: '110.00'
+      message:
+        type: string
+        example: Approved or completed successfully
+  message:
+    type: string
+    example: SUCCESS
+  status:
+    type: boolean
+    example: true
+required:
+  - code
+  - description
+  - data
+  - message
+  - status

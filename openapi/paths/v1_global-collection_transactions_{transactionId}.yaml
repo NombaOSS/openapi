@@ -1,0 +1,89 @@
+get:
+  description: Retrieve the status of an initiated mobile money collection.
+  operationId: Fetch Collection Transaction
+  parameters:
+    - description: Bearer token for authentication.
+      in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer <token>
+      required: true
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - name: transactionId
+      in: path
+      required: true
+      description: The transactionReference returned when the inflow was initiated.
+      schema:
+        type: string
+        example: a822e327-4bcd-40ec-ac61-ed3622eac000
+  responses:
+    '200':
+      description: Transaction retrieved successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+              description:
+                type: string
+                example: Successful
+              data:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                    example: a822e327-4bcd-40ec-ac61-ed3622eac000
+                  coreUserId:
+                    type: string
+                    example: xxxx-xxxx-4402-97c0-6c3824cxxxxx
+                  account:
+                    type: string
+                    example: '0980802918'
+                  status:
+                    type: string
+                    example: PENDING
+                    enum:
+                      - PENDING
+                      - APPROVED
+                      - SUCCESS
+                      - FAILED
+                      - PENDING_APPROVAL
+                    description: >-
+                      Current status of the collection. PENDING_APPROVAL means
+                      no outcome was returned within the polling window and the
+                      collection is unresolved.
+                  amount:
+                    type: number
+                    example: 10
+                  currency:
+                    type: string
+                    example: CDF
+                  vendor:
+                    type: string
+                    example: MPESA
+                    description: >-
+                      The customer's mobile money network, echoing the
+                      topupVendor sent.
+                  gatewayMessage:
+                    type: string
+                    example: APPROVED
+                    description: >-
+                      The response from the customer's mobile money network:
+                      ACCEPTED, APPROVED or DECLINED.
+                  gatewayCode:
+                    type: string
+                    example: Merchant credited
+                    description: >-
+                      What the gatewayMessage means, in plain words: ACCEPTED ->
+                      Awaiting customer approval, APPROVED -> Merchant credited,
+                      DECLINED -> Payment declined. Null for anything else.

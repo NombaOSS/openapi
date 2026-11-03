@@ -1,0 +1,11 @@
+type: object
+description: Permissions error response.
+properties:
+  code:
+    type: string
+    description: API error code.
+    example: '403'
+  description:
+    type: string
+    description: Additional details about the error.
+    example: Forbidden

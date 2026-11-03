@@ -1,0 +1,10 @@
+type: object
+properties:
+  status:
+    type: boolean
+    description: '`true` when the card was deleted'
+    example: true
+  message:
+    type: string
+    description: Response message
+    example: success

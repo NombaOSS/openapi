@@ -1,0 +1,14 @@
+type: object
+properties:
+  order:
+    $ref: ./OrderDetailsObject.yaml
+  hasSavedCards:
+    type: boolean
+    description: true if the user has saved cards
+    example: 'true'
+  base64EncodedRsaPublicKey:
+    type: string
+    description: >-
+      Base64 encoded RSA public key, returned if data encryption is enabled to
+      submit the card details, else an empty string
+    example: '5844858382'

@@ -1,0 +1,18 @@
+type: object
+properties:
+  accountNumber:
+    type: string
+    description: true is the transaction was successful
+    example: '5678576432'
+  accountName:
+    type: string
+    description: account name
+    example: Femi Fash
+  bankName:
+    type: string
+    description: Bank name
+    example: Nombank Mfb
+required:
+  - accountNumber
+  - accountName
+  - bankName

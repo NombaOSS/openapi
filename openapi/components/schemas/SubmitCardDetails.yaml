@@ -1,0 +1,28 @@
+type: object
+properties:
+  cardDetails:
+    type: string
+    description: Stringified card details
+    example:
+      cardCVV: 11
+      cardExpiryMonth: 3
+      cardExpiryYear: 2050
+      cardNumber: '5190752909999995'
+      cardPin: 1111
+  key:
+    type: string
+    description: encryption key is data encrption is in use, else empty string
+    example: ''
+  orderReference:
+    type: string
+    description: the order reference returned when the order was created
+    example: c4307d58-2513-41d8-b7f7-dfecd5f9fdbe
+  saveCard:
+    type: boolean
+    description: >-
+      if true, this this user cardn will be saved for the user's future use.
+      Note the process is not complete until the user-card verification
+      endpoints are called to authenticate the user's phone number.
+    example: 'true'
+  deviceInformation:
+    $ref: ./DeviceInformation.yaml

@@ -1,0 +1,11 @@
+type: object
+description: Record-Not-Found error response.
+properties:
+  code:
+    type: string
+    description: API error code.
+    example: '404'
+  description:
+    type: string
+    description: Additional details about the error.
+    example: Record not found

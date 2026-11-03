@@ -1,0 +1,91 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Unique identifier of the cable TV transaction
+    example: API-DSTV-C1073-5b2e8f4a-3c71-4d9e-8a60-2f1b7c9d4e13
+  status:
+    type: string
+    description: >-
+      Status of the transaction. `SUCCESS` (HTTP 200) means the purchase
+      completed; `PENDING_BILLING` (HTTP 201) means it is still being processed.
+
+
+      In addition, any undocumented `data.status` should be treated as
+      `PENDING_BILLING`; listen for the webhook or requery the transaction for
+      its final status.
+    example: SUCCESS
+  type:
+    type: string
+    description: Transaction type. This is the cable TV provider, e.g. `dstv` or `gotv`
+    example: dstv
+  amount:
+    type: number
+    format: double
+    description: Amount paid for the subscription
+    example: 2000
+  source:
+    type: string
+    description: Channel through which the transaction was initiated
+    example: api
+  sourceUserId:
+    type: string
+    description: Identifier of the source user, if any
+    nullable: true
+  customerBillerId:
+    type: string
+    description: Smartcard or IUC number credited with the subscription
+    example: '1234567890'
+  productId:
+    type: string
+    description: The cable TV provider
+    example: dstv
+  meta:
+    type: object
+    description: Additional transaction metadata
+    additionalProperties: true
+    example:
+      api_rrn: '260927101512'
+      rrn: '260927101512'
+      api_account_id: 0167288-d989-460a-bbde-9842f2b4320f
+      api_client_id: 2167288-d989-460a-bbde-9842f2b4320f
+      user_id: 0167288-d989-460a-bbde-9842f2b4320f
+      merchantTxRef: REF-29-07-2026-14
+      allowDuplicate: true
+      sender_name: John Doe
+      idempotentKey: 0167288-d989-460a-bbde-9842f2b4320f_REF-29-07-2026-14
+      pos_withdrawal_id: 0167288-d989-460a-bbde-9842f2b4320f_REF-29-07-2026-14
+      userName: John Doe
+      isCorporate: 'true'
+      currency: NGN
+      hooksEligible: 'true'
+      isSubscribedToSavingsService: false
+      isSubscribedToLoanService: false
+      txnAlertEligible: false
+      banking_entity_id: 189585760
+      banking_entity_user_id: 188595905
+      banking_entity_type: CORPORATE
+      transactionCategory: Bills & Utility
+      cableTvType: dstv
+      customerId: '1234567890'
+      amount_charged: '2000.0'
+      paymentVendor: wallet
+      wallet_balance: '955.85'
+      wallet_currency: NGN
+      gatewayMessage: Success
+      billingServiceResponse: SUCCESS
+  userId:
+    type: string
+    description: Identifier of the user, if any
+    nullable: true
+  timeCreated:
+    type: string
+    description: Time the transaction was created
+    format: date-time
+    example: '2026-09-27T09:15:12.418+00:00'
+required:
+  - id
+  - status
+  - type
+  - amount
+  - timeCreated

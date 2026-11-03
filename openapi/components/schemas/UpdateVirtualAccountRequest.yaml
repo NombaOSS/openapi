@@ -1,0 +1,29 @@
+type: object
+properties:
+  newAccountRef:
+    type: string
+    description: >-
+      The new accountReference you want to issue to the Virtual account. This
+      will be the value advised in webhook post update
+    minLength: 8
+    maxLength: 64
+    example: INVOICE_20230908_0001
+  accountName:
+    type: string
+    description: Account holder's name you want to update to
+    minLength: 8
+    maxLength: 64
+    example: Daniel Scorsese
+  expectedAmount:
+    type: string
+    description: >-
+      If provided, the virtual account will only accept payments that exactly
+      match the specified amount.
+
+
+      Once expectedAmount is set, the virtual account will no longer accept
+      arbitrary payment amounts.
+
+      You can, however, update the expectedAmount value at any time to change
+      the accepted amount.
+    example: '100.0'

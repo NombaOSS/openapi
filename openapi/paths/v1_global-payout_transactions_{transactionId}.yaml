@@ -1,0 +1,68 @@
+get:
+  description: Track the status of any Global Payout transaction using its transaction ID.
+  operationId: Fetch Global Payout Transaction
+  parameters:
+    - description: Bearer token for authentication.
+      in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer <token>
+      required: true
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - name: transactionId
+      in: path
+      required: true
+      description: The wtTransactionId returned when the transfer was authorized.
+      schema:
+        type: string
+        example: 01kj9ssfwqd4a97jhdx65gmyqy
+  responses:
+    '200':
+      description: Transaction retrieved successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+              description:
+                type: string
+                example: Successful
+              data:
+                type: object
+                properties:
+                  transactionId:
+                    type: string
+                    example: 01kj9ssfwqd4a97jhdx65gmyqy
+                  status:
+                    type: string
+                    example: PROCESSING
+                    enum:
+                      - PROCESSING
+                      - COMPLETED
+                      - FAILED
+                      - PENDING
+                  coreStatus:
+                    type: string
+                    example: PAYMENT_SUCCESSFUL
+                  type:
+                    type: string
+                    example: TRANSFER
+                  createdAt:
+                    type: string
+                    example: '2026-03-13T09:15:57.161946'
+                  idempotencyKey:
+                    type: string
+                    example: 5e246f9a-3e79-4b11-92f1-dbd98b53b308
+                    description: >-
+                      The idempotencyKey sent when the transfer was authorized.
+                      Empty if none was sent.

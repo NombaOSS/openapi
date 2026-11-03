@@ -1,0 +1,13 @@
+type: object
+properties:
+  transactionId:
+    type: string
+    description: the transaction Id returned when the card details were submitted
+    example: c4307d58-2513-41d8-b7f7-dfecd5f9fdbe
+  forceCancel:
+    type: boolean
+    description: Force the cancelation of the transaction
+    example: 'false'
+required:
+  - transactionId
+  - forceCancel

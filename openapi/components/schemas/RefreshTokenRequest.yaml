@@ -1,0 +1,19 @@
+type: object
+description: A structure representing a refresh token request.
+properties:
+  grant_type:
+    type: string
+    description: The grant type of the authentication.
+    enum:
+      - client_credentials
+      - refresh_token
+    example: refresh_token
+  refresh_token:
+    type: string
+    description: A Base64 Encoded String used to refresh an expired access_token
+    example: 01h4gdx2tctxfjgacbdwrcvs5d1688473602892
+    maxLength: 60
+    minLength: 30
+required:
+  - grant_type
+  - refresh_token

@@ -1,0 +1,8 @@
+type: object
+properties:
+  updated:
+    type: boolean
+    description: Successfully updated
+    example: true
+required:
+  - updated

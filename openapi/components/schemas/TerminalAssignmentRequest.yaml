@@ -1,0 +1,12 @@
+type: object
+properties:
+  serialNumber:
+    type: string
+    description: Serial number
+    example: '55555555'
+  terminalLabel:
+    type: string
+    description: Terminal label
+    example: Testing
+required:
+  - serialNumber

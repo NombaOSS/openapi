@@ -1,0 +1,34 @@
+type: object
+description: Represents a response to payment initialization request
+properties:
+  paymentId:
+    type: string
+    description: Unique identifier for the payment
+    example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+  status:
+    type: string
+    description: Current status of the payment
+    enum:
+      - pending
+      - completed
+      - failed
+    example: pending
+  amount:
+    type: number
+    description: Amount of the payment
+    example: 1000
+  currency:
+    type: string
+    description: Currency code for the payment
+    example: NGN
+  createdAt:
+    type: string
+    format: date-time
+    description: Timestamp when the payment was created
+    example: '2023-08-30T14:56:59.000Z'
+required:
+  - paymentId
+  - status
+  - amount
+  - currency
+  - createdAt

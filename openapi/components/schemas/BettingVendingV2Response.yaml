@@ -1,0 +1,92 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Unique identifier of the betting transaction
+    example: API-BETTING-4B8C8-7e3a91c2-58d4-4f0b-b6a2-c9d18e5f3a47
+  status:
+    type: string
+    description: >-
+      Status of the transaction. `SUCCESS` (HTTP 200) means the purchase
+      completed; `PENDING_BILLING` (HTTP 201) means it is still being processed.
+
+
+      In addition, any undocumented `data.status` should be treated as
+      `PENDING_BILLING`; listen for the webhook or requery the transaction for
+      its final status.
+    example: SUCCESS
+  type:
+    type: string
+    description: Transaction type
+    example: betting
+  amount:
+    type: number
+    format: double
+    description: Amount funded into the betting account
+    example: 2000
+  source:
+    type: string
+    description: Channel through which the transaction was initiated
+    example: api
+  sourceUserId:
+    type: string
+    description: Identifier of the source user, if any
+    nullable: true
+  customerBillerId:
+    type: string
+    description: Customer ID on the betting platform credited with the payment
+    example: '1234567890'
+  productId:
+    type: string
+    description: The betting provider
+    example: bet9ja
+  meta:
+    type: object
+    description: Additional transaction metadata
+    additionalProperties: true
+    example:
+      api_rrn: '260927113024'
+      rrn: '260927113024'
+      api_account_id: 0167288-d989-460a-bbde-9842f2b4320f
+      api_client_id: 2167288-d989-460a-bbde-9842f2b4320f
+      user_id: 0167288-d989-460a-bbde-9842f2b4320f
+      merchantTxRef: REF-29-07-2026-15
+      allowDuplicate: true
+      sender_name: John Doe
+      idempotentKey: 0167288-d989-460a-bbde-9842f2b4320f_REF-29-07-2026-15
+      pos_withdrawal_id: 0167288-d989-460a-bbde-9842f2b4320f_REF-29-07-2026-15
+      userName: John Doe
+      isCorporate: 'true'
+      currency: NGN
+      hooksEligible: 'true'
+      isSubscribedToSavingsService: false
+      isSubscribedToLoanService: false
+      txnAlertEligible: false
+      banking_entity_id: 189585760
+      banking_entity_user_id: 188595905
+      banking_entity_type: CORPORATE
+      transactionCategory: Bills & Utility
+      bettingProvider: bet9ja
+      customerId: '1234567890'
+      phoneNumber: '09012345678'
+      amount_charged: '2000.0'
+      paymentVendor: wallet
+      wallet_balance: '955.85'
+      wallet_currency: NGN
+      gatewayMessage: Success
+      billingServiceResponse: SUCCESS
+  userId:
+    type: string
+    description: Identifier of the user, if any
+    nullable: true
+  timeCreated:
+    type: string
+    description: Time the transaction was created
+    format: date-time
+    example: '2026-09-27T10:30:24.207+00:00'
+required:
+  - id
+  - status
+  - type
+  - amount
+  - timeCreated

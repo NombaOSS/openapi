@@ -1,0 +1,117 @@
+post:
+  tags:
+    - Airtime and Data Vending
+  summary: Make airtime purchases via a sub account
+  description: >-
+    **Deprecated.** This endpoint is deprecated and will be removed in a future
+    release. Use `POST /v2/bill/topup/{subAccountId}` instead.
+  operationId: Make airtime purchases via specific or sub account
+  parameters:
+    - description: The parent accountId of the business this sub account belongs to
+      in: header
+      name: accountId
+      schema:
+        type: string
+        format: uuid
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - description: The sub accountId via which airtime is to be purchased
+      in: path
+      name: subAccountId
+      schema:
+        type: string
+        format: uuid
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/AirtimePurchaseRequest.yaml
+    description: The request payload required to make airtime purchases
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+                description: Response Code
+              description:
+                type: string
+                example: Success
+                description: Response description
+              data:
+                $ref: ../components/schemas/AirtimePurchaseResponse.yaml
+            required:
+              - code
+              - description
+              - data
+      description: OK - your request was successful.
+      headers:
+        X-Rate-Limit-Limit:
+          description: The number of allowed requests in the current period
+          schema:
+            type: string
+            example: '40'
+        X-Rate-Limit-Remaining:
+          description: The number of remaining requests in the current period
+          schema:
+            type: string
+            example: '39'
+        X-Rate-Limit-Window:
+          description: The specified rate limit window
+          schema:
+            type: string
+            example: 1s
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: The request body sent by merchant did not pass the validation checks
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+    default:
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: Resource not available
+  deprecated: true
+  security:
+    - BearerAuth: []

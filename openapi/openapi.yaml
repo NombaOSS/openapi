@@ -1,0 +1,237 @@
+openapi: 3.0.1
+info:
+  title: Nomba API
+  version: 1.0.0
+  description: >-
+    Accounts, virtual accounts, checkout, transfers, direct debits, terminals,
+    transactions and bill payments. Generated from https://developer.nomba.com.
+  contact:
+    name: Nomba Developers
+    url: https://developer.nomba.com
+    email: docs@nomba.com
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+servers:
+  - description: Production
+    url: https://api.nomba.com
+  - description: Sandbox
+    url: https://sandbox.nomba.com
+security: []
+tags:
+  - name: Authenticate
+  - name: Accounts
+  - name: Virtual Accounts
+  - name: Online Checkout
+  - name: Charge
+  - name: Transfers
+  - name: Direct Debits
+  - name: Terminals
+  - name: Transactions
+  - name: Airtime and Data Vending
+  - name: Electricity Vending
+  - name: CableTV Subscription
+  - name: Betting Vending
+paths:
+  /v1/accounts/balance:
+    $ref: paths/v1_accounts_balance.yaml
+  /v1/accounts/parent:
+    $ref: paths/v1_accounts_parent.yaml
+  /v1/accounts/{subAccountId}/balance:
+    $ref: paths/v1_accounts_{subAccountId}_balance.yaml
+  /v1/accounts/sub-account-details:
+    $ref: paths/v1_accounts_sub-account-details.yaml
+  /v1/accounts/{accountId}/terminals:
+    $ref: paths/v1_accounts_{accountId}_terminals.yaml
+  /v1/accounts/terminals:
+    $ref: paths/v1_accounts_terminals.yaml
+  /v1/bill/data-plan/{telco}:
+    $ref: paths/v1_bill_data-plan_{telco}.yaml
+  /v2/bill/topup:
+    $ref: paths/v2_bill_topup.yaml
+  /v1/bill/topup:
+    $ref: paths/v1_bill_topup.yaml
+  /v2/bill/topup/{subAccountId}:
+    $ref: paths/v2_bill_topup_{subAccountId}.yaml
+  /v1/bill/topup/{subAccountId}:
+    $ref: paths/v1_bill_topup_{subAccountId}.yaml
+  /v2/bill/data:
+    $ref: paths/v2_bill_data.yaml
+  /v1/bill/data:
+    $ref: paths/v1_bill_data.yaml
+  /v2/bill/data/{subAccountId}:
+    $ref: paths/v2_bill_data_{subAccountId}.yaml
+  /v1/bill/data/{subAccountId}:
+    $ref: paths/v1_bill_data_{subAccountId}.yaml
+  /v1/auth/token/issue:
+    $ref: paths/v1_auth_token_issue.yaml
+  /v1/auth/token/refresh:
+    $ref: paths/v1_auth_token_refresh.yaml
+  /v1/auth/token/revoke:
+    $ref: paths/v1_auth_token_revoke.yaml
+  /v1/bill/betting/providers:
+    $ref: paths/v1_bill_betting_providers.yaml
+  /v1/bill/cableTvProduct:
+    $ref: paths/v1_bill_cableTvProduct.yaml
+  /v1/bill/electricity/discos:
+    $ref: paths/v1_bill_electricity_discos.yaml
+  /v1/bill/betting/lookup:
+    $ref: paths/v1_bill_betting_lookup.yaml
+  /v1/bill/cabletv/lookup:
+    $ref: paths/v1_bill_cabletv_lookup.yaml
+  /v2/bill/electricity/lookup:
+    $ref: paths/v2_bill_electricity_lookup.yaml
+  /v1/bill/electricity/lookup:
+    $ref: paths/v1_bill_electricity_lookup.yaml
+  /v2/bill/betting:
+    $ref: paths/v2_bill_betting.yaml
+  /v1/bill/betting:
+    $ref: paths/v1_bill_betting.yaml
+  /v2/bill/betting/{subAccountId}:
+    $ref: paths/v2_bill_betting_{subAccountId}.yaml
+  /v1/bill/betting/{subAccountId}:
+    $ref: paths/v1_bill_betting_{subAccountId}.yaml
+  /v2/bill/electricity:
+    $ref: paths/v2_bill_electricity.yaml
+  /v1/bill/electricity:
+    $ref: paths/v1_bill_electricity.yaml
+  /v2/bill/electricity/{subAccountId}:
+    $ref: paths/v2_bill_electricity_{subAccountId}.yaml
+  /v1/bill/electricity/{subAccountId}:
+    $ref: paths/v1_bill_electricity_{subAccountId}.yaml
+  /v2/bill/cabletv:
+    $ref: paths/v2_bill_cabletv.yaml
+  /v1/bill/cabletv:
+    $ref: paths/v1_bill_cabletv.yaml
+  /v2/bill/cabletv/{subAccountId}:
+    $ref: paths/v2_bill_cabletv_{subAccountId}.yaml
+  /v1/bill/cabletv/{subAccountId}:
+    $ref: paths/v1_bill_cabletv_{subAccountId}.yaml
+  /v1/checkout/transaction/cancel:
+    $ref: paths/v1_checkout_transaction_cancel.yaml
+  /v1/checkout/get-checkout-kta/{orderReference}:
+    $ref: paths/v1_checkout_get-checkout-kta_{orderReference}.yaml
+  /v1/checkout/confirm-transaction-receipt:
+    $ref: paths/v1_checkout_confirm-transaction-receipt.yaml
+  /v1/checkout/order/{orderReference}:
+    $ref: paths/v1_checkout_order_{orderReference}.yaml
+  /v1/checkout/user-card/{orderReference}:
+    $ref: paths/v1_checkout_user-card_{orderReference}.yaml
+  /v1/checkout/user-card/saved-card/auth:
+    $ref: paths/v1_checkout_user-card_saved-card_auth.yaml
+  /v1/checkout/user-card/auth:
+    $ref: paths/v1_checkout_user-card_auth.yaml
+  /v1/checkout/resend-otp:
+    $ref: paths/v1_checkout_resend-otp.yaml
+  /v1/checkout/checkout-card-detail:
+    $ref: paths/v1_checkout_checkout-card-detail.yaml
+  /v1/checkout/checkout-card-otp:
+    $ref: paths/v1_checkout_checkout-card-otp.yaml
+  /v1/checkout/user-card:
+    $ref: paths/v1_checkout_user-card.yaml
+  /v1/direct-debits:
+    $ref: paths/v1_direct-debits.yaml
+  /v1/direct-debits/debit-mandate:
+    $ref: paths/v1_direct-debits_debit-mandate.yaml
+  /v1/direct-debits/mandates:
+    $ref: paths/v1_direct-debits_mandates.yaml
+  /v1/direct-debits/update-status:
+    $ref: paths/v1_direct-debits_update-status.yaml
+  /v1/global-collection/drc/inflow/providers:
+    $ref: paths/v1_global-collection_drc_inflow_providers.yaml
+  /v1/global-collection/transactions/{transactionId}:
+    $ref: paths/v1_global-collection_transactions_{transactionId}.yaml
+  /v1/global-collection/inflow/initiate:
+    $ref: paths/v1_global-collection_inflow_initiate.yaml
+  /v1/global-payout/exchange/authorize:
+    $ref: paths/v1_global-payout_exchange_authorize.yaml
+  /v1/global-payout/transfer/authorize:
+    $ref: paths/v1_global-payout_transfer_authorize.yaml
+  /v1/global-payout/money/convert:
+    $ref: paths/v1_global-payout_money_convert.yaml
+  /v1/sandbox/global-payout/accounts/{accountId}:
+    $ref: paths/v1_sandbox_global-payout_accounts_{accountId}.yaml
+  /v1/global-payout/accounts/{accountId}:
+    $ref: paths/v1_global-payout_accounts_{accountId}.yaml
+  /v1/sandbox/global-payout/accounts:
+    $ref: paths/v1_sandbox_global-payout_accounts.yaml
+  /v1/global-payout/accounts:
+    $ref: paths/v1_global-payout_accounts.yaml
+  /v1/global-payout/exchange-rates:
+    $ref: paths/v1_global-payout_exchange-rates.yaml
+  /v1/global-payout/transactions/{transactionId}:
+    $ref: paths/v1_global-payout_transactions_{transactionId}.yaml
+  /v1/global-payout/bank/providers:
+    $ref: paths/v1_global-payout_bank_providers.yaml
+  /v1/global-payout/payment-methods:
+    $ref: paths/v1_global-payout_payment-methods.yaml
+  /v1/checkout/order/cancel:
+    $ref: paths/v1_checkout_order_cancel.yaml
+  /v1/checkout/tokenized-card-payment:
+    $ref: paths/v1_checkout_tokenized-card-payment.yaml
+  /v1/checkout/order:
+    $ref: paths/v1_checkout_order.yaml
+  /v1/checkout/tokenized-card-data:
+    $ref: paths/v1_checkout_tokenized-card-data.yaml
+  /v1/checkout/transaction:
+    $ref: paths/v1_checkout_transaction.yaml
+  /v1/checkout/refund:
+    $ref: paths/v1_checkout_refund.yaml
+  /v1/transactions/accounts/{subAccountId}/single:
+    $ref: paths/v1_transactions_accounts_{subAccountId}_single.yaml
+  /v1/transactions/accounts/single:
+    $ref: paths/v1_transactions_accounts_single.yaml
+  /v1/transactions/requery/{sessionId}:
+    $ref: paths/v1_transactions_requery_{sessionId}.yaml
+  /v1/terminals/assign/{subAccountId}:
+    $ref: paths/v1_terminals_assign_{subAccountId}.yaml
+  /v1/terminals/assign:
+    $ref: paths/v1_terminals_assign.yaml
+  /v1/terminals/payment-request/{terminalId}:
+    $ref: paths/v1_terminals_payment-request_{terminalId}.yaml
+  /v1/terminals/unassign:
+    $ref: paths/v1_terminals_unassign.yaml
+  /v1/terminals/unassign/{subAccountId}:
+    $ref: paths/v1_terminals_unassign_{subAccountId}.yaml
+  /v1/transactions/bank:
+    $ref: paths/v1_transactions_bank.yaml
+  /v1/transactions/accounts:
+    $ref: paths/v1_transactions_accounts.yaml
+  /v1/transactions/accounts/{subAccountId}:
+    $ref: paths/v1_transactions_accounts_{subAccountId}.yaml
+  /v1/transfers/banks:
+    $ref: paths/v1_transfers_banks.yaml
+  /v1/transfers/bank/lookup:
+    $ref: paths/v1_transfers_bank_lookup.yaml
+  /v2/transfers/bank:
+    $ref: paths/v2_transfers_bank.yaml
+  /v2/transfers/bank/{subAccountId}:
+    $ref: paths/v2_transfers_bank_{subAccountId}.yaml
+  /v2/transfers/wallet/{subAccountId}:
+    $ref: paths/v2_transfers_wallet_{subAccountId}.yaml
+  /v2/transfers/wallet:
+    $ref: paths/v2_transfers_wallet.yaml
+  /v1/accounts/virtual/{subAccountId}:
+    $ref: paths/v1_accounts_virtual_{subAccountId}.yaml
+  /v1/accounts/virtual:
+    $ref: paths/v1_accounts_virtual.yaml
+  /v1/accounts/virtual/{identifier}:
+    $ref: paths/v1_accounts_virtual_{identifier}.yaml
+  /v1/accounts/virtual/list:
+    $ref: paths/v1_accounts_virtual_list.yaml
+  /v1/direct-debits/status:
+    $ref: paths/v1_direct-debits_status.yaml
+components:
+  securitySchemes:
+    BearerAuth:
+      description: >-
+        Nomba authenticates API calls with [OAuth2 HTTP bearer
+        tokens](http://tools.ietf.org/html/rfc6750). There are two methods of
+        authentication; [Client-Credentials
+        method](https://www.rfc-editor.org/rfc/rfc6749) and [PKCE (Proof Key for
+        Code Exchange)](https://www.rfc-editor.org/rfc/rfc7636) method. Both
+        methods return an access token. Send it in the `Authorization` header:
+        `Authorization: Bearer <access_token>`.
+      scheme: bearer
+      type: http
+      bearerFormat: JWT

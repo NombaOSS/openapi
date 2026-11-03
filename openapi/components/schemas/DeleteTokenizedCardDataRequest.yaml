@@ -1,0 +1,8 @@
+type: object
+properties:
+  tokenKey:
+    type: string
+    description: token key
+    example: '5844858382'
+required:
+  - tokenKey

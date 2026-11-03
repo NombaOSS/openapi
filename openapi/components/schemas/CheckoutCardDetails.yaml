@@ -1,0 +1,18 @@
+type: object
+properties:
+  cardPan:
+    type: string
+    description: The masked card pan
+    example: 515123 **** **** 6667
+  cardType:
+    type: string
+    description: The Card type
+    example: Verve
+  cardCurrency:
+    type: string
+    description: The card currency
+    example: NGN
+  cardBank:
+    type: string
+    description: Card Bank code
+    example: '057'

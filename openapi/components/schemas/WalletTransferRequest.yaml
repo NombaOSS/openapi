@@ -1,0 +1,28 @@
+type: object
+description: A structure representing an object required to post a wallet transfer.
+properties:
+  amount:
+    type: number
+    format: double
+    description: The amount to be transferred.
+    example: 3500
+  receiverAccountId:
+    type: string
+    format: uuid
+    description: The receiver's accountId.
+    example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+  merchantTxRef:
+    type: string
+    description: |-
+      Unique reference used to track a transaction from an external process. 
+       
+      This is an idempotency key and must be unique per transaction.
+    example: UNQ_123abGGhh5546
+  narration:
+    type: string
+    description: The payment narration
+    example: Testing Payment
+required:
+  - amount
+  - receiverAccountId
+  - merchantTxRef

@@ -1,0 +1,20 @@
+type: object
+properties:
+  otp:
+    type: string
+    description: otp send to the customer's mobile phone
+    example: '1234'
+  orderReference:
+    type: string
+    description: order reference
+    example: c4307d58-2513-41d8-b7f7-dfecd5f9fdbe
+  transactionId:
+    type: string
+    description: >-
+      transaction id returned when the card details were submitted, or by a
+      tokenized card charge that requires an OTP
+    example: a729d716-566f-4a47-986f-32b3fa39e075
+required:
+  - otp
+  - orderReference
+  - transactionId

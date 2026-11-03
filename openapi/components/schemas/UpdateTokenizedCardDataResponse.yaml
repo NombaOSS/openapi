@@ -1,0 +1,14 @@
+type: object
+properties:
+  status:
+    type: boolean
+    description: >-
+      `true` when the email was changed. `false` if `currentEmailAddress` isn't
+      the email linked to the card.
+    example: true
+  message:
+    type: string
+    description: Response message
+    example: Email address updated successfully
+  tokenizedCardData:
+    $ref: ./TokenizedCardData.yaml

@@ -1,0 +1,11 @@
+type: object
+description: A structure representing a response from an attempt to revoke a token
+properties:
+  code:
+    type: string
+    description: Tells if the access_token has been revoked
+    example: '00'
+  description:
+    type: string
+    description: Describes the result of the action performed
+    example: Token revoked successfully

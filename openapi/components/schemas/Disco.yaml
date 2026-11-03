@@ -1,0 +1,8 @@
+type: object
+properties:
+  id:
+    type: string
+    example: jed
+  name:
+    type: string
+    example: Jos Electric (JEDC)

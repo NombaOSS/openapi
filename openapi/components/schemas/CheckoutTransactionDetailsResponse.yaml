@@ -1,0 +1,15 @@
+type: object
+properties:
+  status:
+    type: boolean
+    description: true is the transaction was successful
+    example: 'true'
+  message:
+    type: string
+    description: details response message
+    example: success
+  order:
+    $ref: ./OrderDetailsObject.yaml
+required:
+  - status
+  - message

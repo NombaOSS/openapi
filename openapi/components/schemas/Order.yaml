@@ -1,0 +1,104 @@
+type: object
+properties:
+  orderReference:
+    type: string
+    description: reference of the online checkout order to be created
+    example: 90e81e8a-bc14-4ebf-89c0-57da752cca58
+  customerId:
+    type: string
+    description: customer id
+    example: '762878332454'
+  callbackUrl:
+    type: string
+    description: Merchant callback url for redirect after payment
+    example: https://ip:port/merchant.com/callback
+  customerEmail:
+    type: string
+    description: customer email
+    example: abcde@gmail.com
+  amount:
+    type: number
+    format: double
+    description: Amount to pay
+    example: '10000.00'
+  currency:
+    type: string
+    description: >-
+      ISO 4217 currency code. Use NGN for Nigerian checkout. For DRC accounts,
+      use CDF or USD — NGN is not supported for DRC and will be rejected.
+    enum:
+      - NGN
+      - CDF
+      - USD
+    example: NGN
+  accountId:
+    type: string
+    description: If specified, this is the account where the funds will be deposited.
+    example: 01a10aeb-d989-460a-bbde-9842f2b4320f
+  allowedPaymentMethods:
+    type: array
+    description: >-
+      Optional list of payment methods to display on the checkout page. If not
+      provided, all supported methods for your account and region will be shown.
+      Supported values: Card, Transfer, Nomba QR, USSD (Nigerian checkout);
+      MOMO, Intl Card, Apple Pay (DRC checkout); Intl Transfer, which is Pay by
+      Bank, for supported GBP and EUR checkout flows.
+    items:
+      type: string
+      enum:
+        - Card
+        - Transfer
+        - Nomba QR
+        - USSD
+        - MOMO
+        - Intl Card
+        - Apple Pay
+        - Intl Transfer
+    example:
+      - Card
+      - Transfer
+  splitRequest:
+    type: object
+    description: Contains accounts where the inflow will be split into
+    properties:
+      splitType:
+        type: string
+        description: The type fo split to use, either PERCENTAGE or AMOUNT
+        enum:
+          - PERCENTAGE
+          - AMOUNT
+      splitList:
+        type: array
+        items:
+          type: object
+          properties:
+            accountId:
+              type: string
+              description: >-
+                The account Id whose wallet will be credited when the order is
+                paid
+              example: 01a10aeb-d989-460a-bbde-9842f2b4320f
+            value:
+              type: number
+              description: >-
+                The percentage or the order amount or the actual value to credit
+                to this account.
+              example: '65.45'
+  orderMetaData:
+    type: object
+    description: >-
+      Arbitrary key-value metadata to attach to the order. Keys and values must
+      be strings. Stored on the order and returned in webhook payloads. Special
+      key: set "region" to "CD" to route this order through DRC checkout (e.g.
+      for a Nigerian merchant accepting DRC MoMo payments).
+    additionalProperties:
+      type: string
+    example:
+      productName: Premium Plan
+      internalRef: INV-2026-001
+      region: CD
+required:
+  - callbackUrl
+  - customerEmail
+  - amount
+  - currency

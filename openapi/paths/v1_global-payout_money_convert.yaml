@@ -1,0 +1,100 @@
+post:
+  description: >-
+    Calculate a currency conversion and lock an exchange rate before initiating
+    a transfer.
+  operationId: Convert Money
+  parameters:
+    - description: Bearer token for authentication.
+      in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer <token>
+      required: true
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+  requestBody:
+    required: true
+    description: Currency conversion payload
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - amount
+            - currency
+            - destinationCurrency
+            - transactionType
+          properties:
+            amount:
+              type: number
+              example: 15
+            currency:
+              type: string
+              example: USD
+              description: ISO 4217 source currency code.
+            destinationCurrency:
+              type: string
+              example: EUR
+              description: ISO 4217 destination currency code.
+            transactionType:
+              type: string
+              example: EXCHANGE
+  responses:
+    '200':
+      description: Conversion calculated successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+              description:
+                type: string
+                example: Successful
+              data:
+                type: object
+                properties:
+                  fromAmount:
+                    type: number
+                    example: 15
+                  fromCurrency:
+                    type: string
+                    example: USD
+                  fromFormatted:
+                    type: string
+                    example: $15.00
+                  toAmount:
+                    type: number
+                    example: 13.04
+                  toCurrency:
+                    type: string
+                    example: EUR
+                  toFormatted:
+                    type: string
+                    example: 13,04 €
+                  spreadAmount:
+                    type: number
+                    example: 0.12
+                  spreadCurrency:
+                    type: string
+                    example: EUR
+                  exchangeRateId:
+                    type: string
+                    example: 01kkk4b7rh8pcvtw1s1nxs144s
+                  currencyPairName:
+                    type: string
+                    example: EUR/USD
+                  feeAmount:
+                    type: number
+                    example: 0
+                  feeCurrency:
+                    type: string
+                    example: USD

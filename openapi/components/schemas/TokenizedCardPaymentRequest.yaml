@@ -1,0 +1,11 @@
+type: object
+description: The Tokenized card payment request object
+properties:
+  order:
+    $ref: ./Order.yaml
+  tokenKey:
+    type: string
+    description: the token key returned in the webhook
+    example: '7628788443'
+required:
+  - tokenKey

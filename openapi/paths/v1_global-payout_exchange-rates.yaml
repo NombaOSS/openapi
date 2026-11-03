@@ -1,0 +1,80 @@
+get:
+  description: >-
+    Retrieve the latest exchange rates for a currency pair before initiating a
+    transfer.
+  operationId: Fetch Exchange Rates
+  parameters:
+    - description: Bearer token for authentication.
+      in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer <token>
+      required: true
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - name: from
+      in: query
+      required: true
+      description: ISO 4217 currency code to convert from.
+      schema:
+        type: string
+        example: EUR
+    - name: to
+      in: query
+      required: true
+      description: ISO 4217 currency code to convert to.
+      schema:
+        type: string
+        example: USD
+    - name: region
+      in: query
+      required: false
+      description: Optional trade region filter.
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Exchange rates retrieved successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+              description:
+                type: string
+                example: Successful
+              data:
+                type: object
+                properties:
+                  rates:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        exchangeRateId:
+                          type: string
+                          example: 01kkk7pab9mjt70wvk6pzk8mzx
+                        currencyPairName:
+                          type: string
+                          example: EUR/USD
+                        bidRate:
+                          type: string
+                          example: $1.13
+                        askRate:
+                          type: string
+                          example: $1.14
+                        midRate:
+                          type: string
+                          example: $1.14
+                        createdAt:
+                          type: string
+                          example: '2026-03-13T09:15:57.161946'

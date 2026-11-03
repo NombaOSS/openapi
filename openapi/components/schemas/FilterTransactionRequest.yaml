@@ -1,0 +1,60 @@
+type: object
+properties:
+  transactionRef:
+    type: string
+    description: Transaction ID/Reference
+    example: POS-WITHDRAW-DFC05-693cd007-cd1e-4ea6-8b79-5f5c4d7a83ea
+  status:
+    type: string
+    description: Transaction status
+    enum:
+      - NEW
+      - PENDING_PAYMENT
+      - PAYMENT_SUCCESSFUL
+      - PAYMENT_FAILED
+      - PENDING_BILLING
+      - SUCCESS
+      - REFUND
+    example: SUCCESS
+  source:
+    type: string
+    description: Transaction source
+    enum:
+      - api
+      - pos
+      - web
+      - android_app
+      - ios_app
+    example: pos
+  type:
+    type: string
+    description: Transaction type
+    enum:
+      - withdrawal
+      - purchase
+      - transfer
+      - p2p
+      - online_checkout
+      - qrt_credit
+      - qrt_debit
+    example: withdrawal
+  terminalId:
+    type: string
+    description: Terminal ID
+    example: 2KUD4AKB
+  rrn:
+    type: string
+    description: RRN (Retrieval Reference Number)
+    example: '230908202632'
+  merchantTxRef:
+    type: string
+    description: Merchant transaction reference
+    example: c90d-4b25-ad0f
+  orderReference:
+    type: string
+    description: Online checkout order reference
+    example: 693cd007-cd1e-4ea6-8b79-5f5c4d7a83ea
+  orderId:
+    type: string
+    description: Online checkout order id
+    example: 285e4ad2-665f-453b-8795-e854cab5757b

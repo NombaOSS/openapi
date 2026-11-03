@@ -1,0 +1,13 @@
+type: object
+properties:
+  results:
+    type: array
+    description: Contains list of transactions
+    items:
+      $ref: ./TransactionResult.yaml
+  cursor:
+    type: string
+    description: >-
+      Cursor for pagination. It will be empty if there is no more page to scroll
+      to
+    example: xchbaVFsjdsbaADddd

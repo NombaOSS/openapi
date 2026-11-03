@@ -1,0 +1,22 @@
+type: object
+properties:
+  tokenKey:
+    type: string
+    description: The card token (`tokenKey`) you charge the card with
+    example: e890bd1a9f0d
+  customerEmail:
+    type: string
+    description: The email address the card was saved with
+    example: email@email.com
+  cardType:
+    type: string
+    description: The card scheme, for example `Visa`, `Mastercard` or `Verve`
+    example: Verve
+  cardPan:
+    type: string
+    description: The card number. List saved cards returns only the last four digits.
+    example: '7580'
+  tokenExpiryDate:
+    type: string
+    description: When the card expires, as `YYMM`. `2808` means August 2028.
+    example: '2808'

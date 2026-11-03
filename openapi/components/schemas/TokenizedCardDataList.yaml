@@ -1,0 +1,5 @@
+type: object
+properties:
+  tokenizedCardData:
+    items:
+      $ref: ./TokenizedCardData.yaml

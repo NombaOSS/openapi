@@ -1,0 +1,21 @@
+type: object
+properties:
+  bettingProvider:
+    type: string
+    example: bet9ja
+  merchantTxRef:
+    type: string
+    description: This is an idempotency key and must be unique per transaction.
+    example: '12345'
+  phoneNumber:
+    type: string
+    example: '09012345678'
+  payerName:
+    type: string
+    example: John Doe
+  amount:
+    type: integer
+    example: 1000
+  customerId:
+    type: string
+    example: customer123

@@ -1,0 +1,33 @@
+type: object
+properties:
+  status:
+    type: boolean
+    description: status of the transaction
+    example: false
+  message:
+    type: string
+    description: some details of the transaction response.
+    example: >-
+      Please enter the OTP sent to the phone/email address registered with your
+      bank.
+  orderId:
+    type: string
+    description: The order ID
+    example: b6a3c0f2-6d2e-4c1a-9a41-3f2b7d0c9e15
+  orderReference:
+    type: string
+    description: The order reference
+    example: 90e81e8a-bc14-4ebf-89c0-57da752cca58
+  otpRequired:
+    type: boolean
+    description: >-
+      true when the customer's bank requires an OTP to complete the charge. The
+      charge stays pending until the OTP is submitted with transactionId to
+      /v1/checkout/checkout-card-otp.
+    example: true
+  transactionId:
+    type: string
+    description: >-
+      Returned only when otpRequired is true. Send it with the customer's OTP to
+      /v1/checkout/checkout-card-otp.
+    example: a729d716-566f-4a47-986f-32b3fa39e075

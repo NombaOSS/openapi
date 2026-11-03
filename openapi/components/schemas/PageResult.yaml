@@ -1,0 +1,25 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      items:
+        $ref: ./DirectDebitMandateData.yaml
+      page:
+        type: integer
+      pageSize:
+        type: integer
+      totalItems:
+        type: integer
+      totalPages:
+        type: integer
+      hasMore:
+        type: boolean
+  message:
+    type: string
+  code:
+    type: string
+  description:
+    type: string
+  status:
+    type: boolean

@@ -1,0 +1,34 @@
+type: object
+properties:
+  sessionId:
+    type: string
+    description: Transfer sessionId
+    example: '67584432178569543'
+  beneficiaryAccountName:
+    type: string
+    description: The account name associated with the Merchants Nombank account
+    example: Tope Fade
+  beneficiaryAccountNumber:
+    type: string
+    description: The Flash account number, where the payment was made to
+    example: '5844858382'
+  originatorAccountName:
+    type: string
+    description: The name of the person making the transfer
+    example: Femi Fash
+  originatorAccountNumber:
+    type: string
+    description: Nuban account number of the person making the transfer
+    example: '3409082834'
+  narration:
+    type: string
+    description: The naration added by the customer when making the transfer
+    example: Checkout payment
+  destinationInstitutionCode:
+    type: string
+    description: Destination bank code
+    example: 'true'
+  paymentReference:
+    type: string
+    description: Transfer payment reference passed in from NIBSS for the transfer
+    example: '44384586756'

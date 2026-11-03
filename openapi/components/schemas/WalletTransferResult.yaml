@@ -1,0 +1,61 @@
+type: object
+properties:
+  amount:
+    type: number
+    format: double
+    description: Transfer amount
+    example: 5502
+  meta:
+    $ref: ./WalletTransferMetaObject.yaml
+  fee:
+    type: number
+    format: double
+    description: Transfer fee
+    example: 50
+  timeCreated:
+    type: string
+    format: date-time
+    description: Creation timestamp
+    example: '2023-09-08T14:17:13.634Z'
+  id:
+    type: string
+    description: Transfer ID
+    example: API-P2P-C24AD-a6443bf0-011c-4bc2-b739-4a2e33e2a27b
+  type:
+    type: string
+    description: Transaction type
+    enum:
+      - withdrawal
+      - purchase
+      - transfer
+      - p2p
+      - online_checkout
+      - qrt_credit
+      - qrt_debit
+    example: p2p
+  status:
+    type: string
+    description: >-
+      Transaction status.
+
+
+      In addition, any undocumented `data.status` should be treated as
+      `PENDING_BILLING`; listen for the webhook or requery the transaction for
+      its final status.
+    enum:
+      - SUCCESS
+      - PENDING_BILLING
+      - REFUND
+      - CANCELLED
+      - PAYMENT_FAILED
+      - REVERSED_BY_VENDOR
+    example: SUCCESS
+required:
+  - amount
+  - meta
+  - fee
+  - timeCreated
+  - id
+  - type
+  - status
+description: Transfer data

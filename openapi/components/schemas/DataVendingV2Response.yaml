@@ -1,0 +1,101 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Unique identifier of the data transaction
+    example: API-DATA-AAA1A-36dc6c70-5cf2-4592-93be-9bccc23df7f5
+  status:
+    type: string
+    description: >-
+      Status of the transaction. `SUCCESS` (HTTP 200) means the purchase
+      completed; `PENDING_BILLING` (HTTP 201) means it is still being processed.
+
+
+      In addition, any undocumented `data.status` should be treated as
+      `PENDING_BILLING`; listen for the webhook or requery the transaction for
+      its final status.
+    example: SUCCESS
+  type:
+    type: string
+    description: Transaction type
+    example: data
+  amount:
+    type: number
+    format: double
+    description: Amount paid for the data bundle
+    example: 100
+  source:
+    type: string
+    description: Channel through which the transaction was initiated
+    example: api
+  sourceUserId:
+    type: string
+    description: Identifier of the source user, if any
+    nullable: true
+  customerBillerId:
+    type: string
+    description: Phone number credited with the data bundle
+    example: '08168969046'
+  productId:
+    type: string
+    description: Identifier of the data plan purchased
+    example: '62130'
+  meta:
+    type: object
+    description: >-
+      Additional transaction metadata, including the data plan purchased
+      (`data-plan`) and network
+    additionalProperties: true
+    example:
+      api_rrn: '260927093143'
+      data-plan: 110MB Daily Plan
+      rrn: '260927093143'
+      api_account_id: 0167288-d989-460a-bbde-9842f2b4320f
+      api_client_id: 2167288-d989-460a-bbde-9842f2b4320f
+      user_id: 0167288-d989-460a-bbde-9842f2b4320f
+      merchantTxRef: REF-29-07-2026-13
+      allowDuplicate: true
+      sender_name: John Doe
+      idempotentKey: 0167288-d989-460a-bbde-9842f2b4320f_REF-29-07-2026-13
+      pos_withdrawal_id: 0167288-d989-460a-bbde-9842f2b4320f_REF-29-07-2026-13
+      userName: John Doe
+      isCorporate: 'true'
+      currency: NGN
+      hooksEligible: 'true'
+      isSubscribedToSavingsService: false
+      isSubscribedToLoanService: false
+      txnAlertEligible: false
+      banking_entity_id: 189585760
+      banking_entity_user_id: 188595905
+      banking_entity_type: CORPORATE
+      self_transaction: true
+      transactionCategory: Bills & Utility
+      network: mtn
+      subscriberNumber: '08123456788'
+      amount_charged: '100.0'
+      paymentVendor: wallet
+      wallet_balance: '2955.85'
+      wallet_currency: NGN
+      agent_commission: '0.0'
+      gatewayMessage: Success
+      billingVendor: cowrie
+      billingServiceResponse: SUCCESS
+      income: '2.5'
+      paymentFee: 0
+      tx_revenue: '2.5'
+      phoneNumber: '08123456788'
+  userId:
+    type: string
+    description: Identifier of the user, if any
+    nullable: true
+  timeCreated:
+    type: string
+    description: Time the transaction was created
+    format: date-time
+    example: '2026-09-27T08:31:43.555+00:00'
+required:
+  - id
+  - status
+  - type
+  - amount
+  - timeCreated

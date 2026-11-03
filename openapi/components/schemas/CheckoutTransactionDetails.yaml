@@ -1,0 +1,33 @@
+type: object
+properties:
+  transactionDate:
+    type: string
+    format: date-time
+    description: Date the transaction was created
+    example: '2023-12-06T15:46:43.000Z'
+  paymentReference:
+    type: string
+    description: The payment reference for the transaction
+    example: '5844858382134'
+  paymentVendorReference:
+    type: string
+    description: The payment reference returned by the payment gateway
+    example: '5844858382675493'
+  tokenizedCardPayment:
+    type: boolean
+    description: True if the payment was made by a tokenized card
+    example: 'true'
+  statusCode:
+    type: string
+    description: >-
+      Card processor response code. Empty on non-card rails such as mobile
+      money, so it cannot be used to confirm a payment - use status instead
+    example: Payment approved
+  status:
+    type: string
+    description: Payment status of the transaction
+    enum:
+      - PENDING
+      - PAYMENT SUCCESSFUL
+      - FAILED PAYMENT
+    example: PAYMENT SUCCESSFUL

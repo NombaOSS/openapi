@@ -1,0 +1,161 @@
+get:
+  description: >-
+    Returns all supported payment methods and their method-specific
+    requirements. Filter by code or name to retrieve a specific method.
+  operationId: Fetch Payment Methods
+  parameters:
+    - description: Bearer token for authentication.
+      in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer <token>
+      required: true
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - description: >-
+        Optional destination country ISO code. Supply it to receive that
+        corridor's method-specific requiredFields and optionalFields. Omit it to
+        receive the catalogue of available methods and the corridors each one
+        serves.
+      in: query
+      name: destinationCountryIsoCode
+      schema:
+        type: string
+        example: CA
+      required: false
+    - description: >-
+        Optional destination currency code. Use it where a country supports more
+        than one currency and the requirements differ between them.
+      in: query
+      name: destinationCurrency
+      schema:
+        type: string
+        example: CAD
+      required: false
+    - description: Optional payment method code used to return a specific method.
+      in: query
+      name: code
+      schema:
+        type: string
+        example: ACH
+      required: false
+    - description: >-
+        Optional payment method name used to return a specific method, for
+        example BANK or Wire Transfer.
+      in: query
+      name: name
+      schema:
+        type: string
+        example: BANK
+      required: false
+  responses:
+    '200':
+      description: Payment methods retrieved successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+              description:
+                type: string
+                example: Successful
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    code:
+                      type: string
+                      example: EFT
+                    displayName:
+                      type: string
+                      example: EFT
+                    purposeOfPaymentRequired:
+                      type: boolean
+                      example: true
+                    purposeOfPayments:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          code:
+                            type: string
+                            example: SERVICE_CHARGES
+                          displayName:
+                            type: string
+                            example: Service Charges
+                      description: >-
+                        Selectable purpose-of-payment values for this method.
+                        Send one of the code values as purposeOfPayment. Empty
+                        on the catalogue response.
+                    requiredFields:
+                      type: array
+                      items:
+                        type: string
+                      example:
+                        - amount
+                        - sourceCurrency
+                        - destinationCurrency
+                        - receiverName
+                        - sourceCountryIsoCode
+                        - destinationCountryIsoCode
+                        - paymentMethod
+                        - accountType
+                        - accountNumber
+                        - institutionCode
+                        - beneficiary.beneficiaryEmail
+                        - beneficiary.transitNumber
+                      description: >-
+                        Fields that must be included when authorizing a
+                        transfer. A dotted name is a nested field, for example
+                        beneficiary.transitNumber. On the catalogue response
+                        only the fields every request carries are listed.
+                    optionalFields:
+                      type: array
+                      items:
+                        type: string
+                      example:
+                        - narration
+                        - lockedExchangeRateId
+                        - beneficiary.beneficiaryState
+                    accountTypes:
+                      type: array
+                      items:
+                        type: string
+                      example:
+                        - INDIVIDUAL
+                        - CORPORATE
+                      description: Selectable accountType values for this method.
+                    bankAccountTypes:
+                      type: array
+                      items:
+                        type: string
+                      example:
+                        - CHECKING
+                        - SAVINGS
+                      description: Selectable bankAccountType values for this method.
+                    supportedCorridors:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          countryIsoCode:
+                            type: string
+                            example: CA
+                          currency:
+                            type: string
+                            example: CAD
+                      description: >-
+                        The corridors this entry covers. On the catalogue
+                        response, every corridor the method is available in. On
+                        a corridor response, the single corridor the entry
+                        describes.

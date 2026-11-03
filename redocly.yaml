@@ -1,0 +1,9 @@
+# Known problems inherited from the docs are listed in .redocly.lint-ignore.yaml
+# (see ALIGNMENT.md). Remove entries as they are fixed upstream; CI fails on any
+# new problem.
+extends:
+  - recommended
+
+apis:
+  nomba:
+    root: openapi/openapi.yaml

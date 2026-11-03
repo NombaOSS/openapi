@@ -1,0 +1,45 @@
+type: object
+properties:
+  terminalId:
+    type: string
+    description: Terminal ID
+    example: 201124LM
+  serialNumber:
+    type: string
+    description: Serial number
+    example: '55555555'
+  accountId:
+    type: string
+    description: Account ID
+    example: 01a10aeb-d989-460a-bbde-9842f2b4320f
+  parentAccountId:
+    type: string
+    description: Parent account ID
+    example: ''
+  merchantName:
+    type: string
+    description: Merchant name
+    example: trident and rees
+  terminalLabel:
+    type: string
+    description: Terminal label
+    example: Testing
+  createdAt:
+    type: string
+    format: date-time
+    description: Creation timestamp
+    example: '2020-09-23T10:21:48.789Z'
+  updatedAt:
+    type: string
+    format: date-time
+    description: Updated timestamp
+    example: '2023-09-04T15:23:55.173Z'
+required:
+  - terminalId
+  - serialNumber
+  - accountId
+  - parentAccountId
+  - merchantName
+  - terminalLabel
+  - createdAt
+  - updatedAt

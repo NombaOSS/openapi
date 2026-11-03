@@ -1,0 +1,263 @@
+get:
+  tags:
+    - Transactions
+  summary: Fetch transactions on the parent account
+  description: You can use this endpoint to fetch transactions on the parent account.
+  operationId: Fetch transactions on the parent account
+  parameters:
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        format: uuid
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - description: >-
+        This endpoint is paginated. `limit` describes the size of the page you
+        are querying
+      example: 10
+      in: query
+      name: limit
+      schema:
+        type: integer
+        format: int32
+      required: false
+    - description: >-
+        The `cursor` is used to scroll to the next page. When making the first
+        call to list all accounts, there is no need to pass in any cursor since
+        the API has not returned any cursor back to you. Only use cursor when
+        the API provides it
+      example: xchbaVFsjdsbaADddd
+      in: query
+      name: cursor
+      schema:
+        type: string
+      required: false
+    - description: 'This starting date (UTC). Sample date: `2023-01-01T00:00:00`'
+      in: query
+      name: dateFrom
+      example: '2023-09-08T00:00:00.007Z'
+      schema:
+        type: string
+      required: false
+    - description: 'This ending date (UTC). Sample date: `2024-09-30T23:59:59`'
+      in: query
+      name: dateTo
+      example: '2023-08-08T23:59:59.007Z'
+      schema:
+        type: string
+      required: false
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+                description: Response Code
+              description:
+                type: string
+                example: Success
+                description: Response description
+              data:
+                $ref: ../components/schemas/TransactionListResults.yaml
+            required:
+              - code
+              - description
+              - data
+      description: OK - your request was successful.
+      headers:
+        X-Rate-Limit-Limit:
+          description: The number of allowed requests in the current period
+          schema:
+            type: string
+            example: '40'
+        X-Rate-Limit-Remaining:
+          description: The number of remaining requests in the current period
+          schema:
+            type: string
+            example: '39'
+        X-Rate-Limit-Window:
+          description: The specified rate limit window
+          schema:
+            type: string
+            example: 1s
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: The request body sent by merchant did not pass the validation checks
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+  security:
+    - BearerAuth: []
+post:
+  tags:
+    - Transactions
+  summary: Filter parent account transactions
+  description: You can use this endpoint to filter transactions on the parent account.
+  operationId: Filter parent account transactions
+  parameters:
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        format: uuid
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - description: >-
+        This endpoint is paginated. `limit` describes the size of the page you
+        are querying
+      example: 10
+      in: query
+      name: limit
+      schema:
+        type: integer
+        format: int32
+      required: false
+    - description: >-
+        The `cursor` is used to scroll to the next page. When making the first
+        call to list all accounts, there is no need to pass in any cursor since
+        the API has not returned any cursor back to you. Only use cursor when
+        the API provides it
+      example: xchbaVFsjdsbaADddd
+      in: query
+      name: cursor
+      schema:
+        type: string
+      required: false
+    - description: 'This starting date (UTC). Sample date: `2023-01-01T00:00:00`'
+      in: query
+      name: dateFrom
+      example: '2023-09-08T00:00:00.007Z'
+      schema:
+        type: string
+      required: false
+    - description: 'This ending date (UTC). Sample date: `2024-09-30T23:59:59`'
+      in: query
+      name: dateTo
+      example: '2023-08-08T23:59:59.007Z'
+      schema:
+        type: string
+      required: false
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/FilterTransactionRequest.yaml
+    description: The request payload required to filter account transactions.
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+                description: Response Code
+              description:
+                type: string
+                example: Success
+                description: Response description
+              data:
+                $ref: ../components/schemas/TransactionListResults.yaml
+            required:
+              - code
+              - description
+              - data
+      description: OK - your request was successful.
+      headers:
+        X-Rate-Limit-Limit:
+          description: The number of allowed requests in the current period
+          schema:
+            type: string
+            example: '40'
+        X-Rate-Limit-Remaining:
+          description: The number of remaining requests in the current period
+          schema:
+            type: string
+            example: '39'
+        X-Rate-Limit-Window:
+          description: The specified rate limit window
+          schema:
+            type: string
+            example: 1s
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: The request body sent by merchant did not pass the validation checks
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+  security:
+    - BearerAuth: []

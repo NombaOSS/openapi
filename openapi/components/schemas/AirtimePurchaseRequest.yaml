@@ -1,0 +1,41 @@
+type: object
+properties:
+  amount:
+    type: number
+    format: double
+    description: The airtime amount to be purchased
+    example: 200
+  phoneNumber:
+    type: string
+    description: Recipient phone number
+    minLength: 11
+    maxLength: 13
+    example: '08055441122'
+  network:
+    type: string
+    description: >-
+      Recipient network (telco). It can also come as lowercased values e.g. glo,
+      mtn etc.
+    minLength: 3
+    enum:
+      - GLO
+      - MTN
+      - 9MOBILE
+      - AIRTEL
+    example: GLO
+  merchantTxRef:
+    type: string
+    description: |-
+      Merchant Transaction Identifier reference (Unique to merchant) 
+       
+       This is an idempotency key and must be unique per transaction.
+    example: 3bvwhibh38220dsjakTwvb
+  senderName:
+    type: string
+    description: A name to describe the sender of the airtime
+    example: John Doe
+required:
+  - amount
+  - phoneNumber
+  - network
+  - merchantTxRef

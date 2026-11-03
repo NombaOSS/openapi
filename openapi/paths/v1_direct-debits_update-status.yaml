@@ -1,0 +1,76 @@
+put:
+  tags:
+    - Direct Debits
+  summary: Update mandate status
+  description: Updates the status of a direct debit mandate (e.g., SUSPEND, ACTIVE).
+  parameters:
+    - name: accountId
+      in: header
+      required: true
+      schema:
+        type: string
+      description: The vendor account ID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/UpdateMandateStatusRequest.yaml
+        example:
+          mandateId: c93e1e1b-85f5-461e-8b9b-74ee091d4aa4
+          status: SUSPEND
+  responses:
+    '200':
+      description: Mandate status updated successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/UpdateMandateStatusResponse.yaml
+          example:
+            code: '00'
+            description: SUCCESS
+            data:
+              mandateId: c93e1e1b-85f5-461e-8b9b-74ee091d4aa4
+              mandateStatus: Advise not sent
+            message: SUCCESS
+            status: true
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+    default:
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: Resource not available
+  security:
+    - BearerAuth: []

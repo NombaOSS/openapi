@@ -1,0 +1,56 @@
+type: object
+properties:
+  billerId:
+    type: string
+    description: Biller ID
+    example: API_FCIR5UQFMYS
+  terminalActionId:
+    type: string
+    description: Terminal action ID
+    example: ''
+  productId:
+    type: string
+    description: Product ID
+    example: p2p
+  fee:
+    type: number
+    format: double
+    description: Fee
+    example: 0
+  type:
+    type: string
+    description: Type
+    example: p2p
+  transactionId:
+    type: string
+    description: Transaction ID
+    example: API-P2P-84026-d8a4d658-6747-418d-a7e2-37bc6290310d
+  rrn:
+    type: string
+    description: RRN (Retrieval Reference Number)
+    example: ''
+  parentAccountId:
+    type: string
+    description: Parent account ID
+    example: 01a10aeb-d989-460a-bbde-9842f2b4320f
+  terminalLabel:
+    type: string
+    description: Terminal label
+    example: ''
+  accountId:
+    type: string
+    description: Account ID
+    example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+  merchantTxRef:
+    type: string
+    description: Merchant transaction reference
+    example: ''
+  transactionAmount:
+    type: number
+    format: double
+    description: Transaction amount
+    example: 7000
+  mCollectionsId:
+    type: string
+    description: MCollections ID
+    example: ''

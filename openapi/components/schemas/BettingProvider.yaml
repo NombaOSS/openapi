@@ -1,0 +1,20 @@
+type: object
+properties:
+  lookup_id:
+    type: string
+    example: BET9JA
+  amount:
+    type: string
+    example: ''
+  name:
+    type: string
+    example: BET9JA
+  biller_id:
+    type: string
+    example: bet9ja
+  id:
+    type: string
+    example: bet9ja
+required:
+  - name
+  - id

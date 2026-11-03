@@ -1,0 +1,30 @@
+type: object
+properties:
+  status:
+    type: boolean
+    description: true if the card details were submitted successfully
+    example: 'true'
+  message:
+    type: string
+    description: >-
+      Response message describing the transaction status or further instruction
+      for the user like the case of OTP
+    example: Success
+  responseCode:
+    type: string
+    description: >-
+      response code from the payment gate way. 00 means transaction was
+      successful and completed, T0 means an OTP has been sent to the user and
+      should be entered next, SO means  3D Secure authentication is required and
+      the client application needs to redirect to the 3D secure page based on
+      the information provided in the  secureAuthenticationData field
+    example: '00'
+  transactionId:
+    type: string
+    description: >-
+      the unique id of the transaction just created by the submittion of the
+      card details. This value should be passed back to all API calls that
+      require it.
+    example: c4307d58-2513-41d8-b7f7-dfecd5f9fdbe
+  secureAuthenticationData:
+    $ref: ./SecureAuthenticationData.yaml

@@ -1,0 +1,57 @@
+type: object
+properties:
+  amount:
+    type: number
+    format: double
+    description: The value (in digits) of this transaction
+    example: 2000
+  timeCreated:
+    type: string
+    description: The Date and Time of transaction creation
+    format: date-time
+    example: '2026-02-06T07:09:06.900Z'
+  type:
+    type: string
+    description: The classification for this type of transaction
+    example: phcn
+  meta:
+    type: object
+    description: Extra information about this transaction
+    example:
+      merchantTxRef: test1116
+      phcnCustomerAddress: 52, Ajose Street
+      phcnVendUnits: '23.5'
+      phcnVendToken: '12345678909876543212'
+      meterName: John Doe
+      meterType: PREPAID
+      rrn: '240626232937'
+      api_client_id: 123456-9100-4e66-93e1-7f6da894ef89
+      api_account_id: 0167288-d989-460a-bbde-9842f2b4320f
+  status:
+    type: string
+    description: >-
+      The status of this transaction. `SUCCESS` means it completed; `PROCESSING`
+      means it is still being processed — listen for the webhook or requery the
+      transaction for the final status.
+    enum:
+      - SUCCESS
+      - PROCESSING
+    example: SUCCESS
+  id:
+    type: string
+    description: >-
+      The unique ID of the transaction, e.g.
+      `API-PHCN-4B8C8-dcc5994c-e110-4035-9017-fc6e497a3baa`. Use it to requery
+      the transaction.
+    example: API-PHCN-4B8C8-dcc5994c-e110-4035-9017-fc6e497a3baa
+  fee:
+    type: string
+    description: The associated transaction fee
+    example: '0.0'
+required:
+  - amount
+  - timeCreated
+  - type
+  - status
+  - meta
+  - id

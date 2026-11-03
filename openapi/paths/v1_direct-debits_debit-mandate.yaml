@@ -1,0 +1,44 @@
+post:
+  tags:
+    - Direct Debits
+  summary: Debit a mandate
+  description: Debits a customer's account using an active mandate.
+  parameters:
+    - name: accountId
+      in: header
+      required: true
+      schema:
+        type: string
+      description: The vendor account ID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/DebitMandateRequest.yaml
+        example:
+          mandateId: 89b0efc0-dde5-49e2-8bde-5523ae081c43
+          amount: '110.00'
+  responses:
+    '200':
+      description: Mandate debited successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/DebitMandateResponse.yaml
+          example:
+            code: '00'
+            description: SUCCESS
+            data:
+              mandateId: 89b0efc0-dde5-49e2-8bde-5523ae081c43
+              status: SUCCESS
+              amount: '110.00'
+              message: Approved or completed successfully
+            message: SUCCESS
+            status: true
+    '400':
+      description: Invalid request payload
+    '401':
+      description: Unauthorized - invalid or missing token
+  security:
+    - BearerAuth: []

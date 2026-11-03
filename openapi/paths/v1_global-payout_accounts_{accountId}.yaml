@@ -1,0 +1,113 @@
+get:
+  description: >-
+    Retrieve the details and balance of a single Global Payout account by its
+    account ID.
+  operationId: Fetch Global Payout Account
+  parameters:
+    - description: Bearer token for authentication.
+      in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer <token>
+      required: true
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - name: accountId
+      in: path
+      required: true
+      description: >-
+        The wallet id, exactly as returned in the accountId field by GET
+        /v1/global-payout/accounts. This is not a currency code - passing one
+        returns 404.
+      schema:
+        type: string
+        example: 66bc8c0e054dfe06b69a840a
+  responses:
+    '200':
+      description: Account retrieved successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+              description:
+                type: string
+                example: Successful
+              status:
+                type: boolean
+                description: >-
+                  Legacy envelope flag. Global Payout endpoints leave it false
+                  even on success - read code instead, where 00 means success.
+                example: false
+              data:
+                type: object
+                properties:
+                  accountId:
+                    type: string
+                    description: >-
+                      The wallet id. Pass this value to GET
+                      /v1/global-payout/accounts/{accountId} to fetch this
+                      account on its own.
+                    example: 66bc8c0e054dfe06b69a840a
+                  name:
+                    type: string
+                    example: CbG
+                  currency:
+                    type: string
+                    example: CDF
+                  balance:
+                    type: number
+                    nullable: true
+                    description: >-
+                      Everything the wallet holds, liens included. Null when the
+                      balance could not be read - see status.
+                    example: 2770399.5999999996
+                  availableBalance:
+                    type: number
+                    nullable: true
+                    description: >-
+                      The balance less anything held under lien: what can
+                      actually be paid out. Null when the balance could not be
+                      read - see status.
+                    example: 2770399.5999999996
+                  status:
+                    type: string
+                    enum:
+                      - ACTIVE
+                      - UNAVAILABLE
+                    description: >-
+                      ACTIVE when the balances are good. UNAVAILABLE means you
+                      hold the account but its balance could not be read on this
+                      request, and both balance fields are null - the account
+                      still exists, so retry rather than treating it as closed.
+                    example: ACTIVE
+                  operationRegion:
+                    type: string
+                    example: CD
+    '404':
+      description: >-
+        No account with that id belongs to the authenticated business. Returned
+        when the id is not one of your wallets - including when a currency code
+        such as CAD is sent instead of a wallet id. It is not returned when the
+        balance simply could not be read: that case comes back 200 with status
+        UNAVAILABLE.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '404'
+              description:
+                type: string
+                example: No account found for 66bc8c0e054dfe06b69a840a

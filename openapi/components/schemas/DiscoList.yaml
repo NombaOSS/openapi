@@ -1,0 +1,4 @@
+type: array
+description: List of all electricity providers/discos
+items:
+  $ref: ./Disco.yaml

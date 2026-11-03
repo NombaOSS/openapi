@@ -1,0 +1,95 @@
+get:
+  tags:
+    - Direct Debits
+  summary: Get mandates by filters
+  parameters:
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        format: uuid
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - name: page
+      in: query
+      required: true
+      schema:
+        type: integer
+        example: 0
+    - name: pageSize
+      in: query
+      required: true
+      schema:
+        type: integer
+        example: 20
+    - name: from
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    - name: to
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date
+    - name: status
+      in: query
+      required: false
+      schema:
+        type: string
+  responses:
+    '200':
+      description: Page of mandates
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/PageResult.yaml
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: The request body sent by merchant did not pass the validation checks
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+    default:
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: Resource not available
+  security:
+    - BearerAuth: []

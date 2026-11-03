@@ -1,0 +1,299 @@
+post:
+  description: >-
+    Initiate and authorize a cross-border transfer. Manages the complete
+    transfer lifecycle from initiation to final authorization. Supports BANK,
+    MobileMoney, INTERAC, FASTER_PAYMENTS, SEPA, ACH, and WIRE payment methods.
+  operationId: Authorize Transfer
+  parameters:
+    - description: Bearer token for authentication.
+      in: header
+      name: Authorization
+      schema:
+        type: string
+        example: Bearer <token>
+      required: true
+    - description: The parent accountId of the business.
+      in: header
+      name: accountId
+      schema:
+        type: string
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+  requestBody:
+    required: true
+    description: Transfer authorization payload
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - amount
+            - sourceCurrency
+            - destinationCurrency
+            - receiverName
+            - sourceCountryIsoCode
+            - destinationCountryIsoCode
+            - paymentMethod
+            - accountType
+          properties:
+            amount:
+              type: number
+              example: 500
+            sourceCurrency:
+              type: string
+              example: USD
+            destinationCurrency:
+              type: string
+              example: USD
+            receiverName:
+              type: string
+              example: John Cena
+            sourceCountryIsoCode:
+              type: string
+              example: CD
+            destinationCountryIsoCode:
+              type: string
+              example: CD
+            paymentMethod:
+              type: string
+              enum:
+                - BANK
+                - MobileMoney
+                - INTERAC
+                - FASTER_PAYMENTS
+                - SEPA
+                - ACH
+                - WIRE
+              example: MobileMoney
+              description: >-
+                Payment rail. Determines which additional fields are required.
+                Use Fetch Payment Methods with code or name to get
+                method-specific requirements.
+            accountNumber:
+              type: string
+              example: '0903086112'
+              description: >-
+                Account number, IBAN, or phone number for MobileMoney. Required
+                for BANK, MobileMoney, FASTER_PAYMENTS, SEPA.
+            institutionCode:
+              type: string
+              example: access_bank
+              description: >-
+                Routing code. Bank code from /bank/providers for BANK (DRC).
+                Sort code for FASTER_PAYMENTS, SWIFT/BIC for SEPA, institution
+                number for BANK (Canada).
+            institutionName:
+              type: string
+              example: Mpesa
+              description: >-
+                Bank or provider display name. Use displayName from List
+                Institution Providers.
+            accountType:
+              type: string
+              enum:
+                - INDIVIDUAL
+                - CORPORATE
+              example: INDIVIDUAL
+              description: >-
+                Required account type of the recipient. Select one of the values
+                returned in accountTypes from Fetch Payment Methods. ACH
+                supports only INDIVIDUAL; WIRE supports INDIVIDUAL and
+                CORPORATE.
+            bankAccountType:
+              type: string
+              enum:
+                - CHECKING
+                - SAVINGS
+              example: CHECKING
+              description: >-
+                Recipient bank account type. Required for ACH and WIRE. Select
+                one of the values returned in bankAccountTypes from Fetch
+                Payment Methods.
+            purposeOfPayment:
+              type: string
+              example: FAMILY_SUPPORT
+              description: >-
+                Reason for the transfer. Required for ACH, WIRE, and SEPA.
+                Select one of the values returned in purposeOfPayments from
+                Fetch Payment Methods; do not send arbitrary text.
+            narration:
+              type: string
+              example: Family support
+            lockedExchangeRateId:
+              type: string
+              example: 01k7pcakf0t8g03rvny3z5mr1p
+              description: >-
+                Optional locked exchange rate ID from Convert Money. Use this
+                when you want to lock the exchange rate and destination amount
+                before authorizing.
+            idempotencyKey:
+              type: string
+              maxLength: 128
+              example: 5e246f9a-3e79-4b11-92f1-dbd98b53b308
+              description: >-
+                Optional. Your own unique key for this request. Send the same
+                key when retrying and the original transaction is returned
+                instead of a second one being created. A key stays tied to its
+                transaction permanently — use a new key for a new attempt.
+            bankAddress:
+              type: string
+              example: 383 Madison Avenue
+              description: Bank street address. Required for United States WIRE.
+            bankCity:
+              type: string
+              example: New York
+              description: Bank city. Required for United States WIRE.
+            bankState:
+              type: string
+              example: NY
+              description: Bank state. Required for United States WIRE.
+            bankZipCode:
+              type: string
+              example: '10017'
+              description: Bank ZIP code. Required for United States WIRE.
+            beneficiary:
+              type: object
+              description: Required for INTERAC; partially required for BANK (Canada).
+              properties:
+                beneficiaryEmail:
+                  type: string
+                  example: jane.doe@email.com
+                securityQuestion:
+                  type: string
+                  example: What is your pets name?
+                securityQuestionAnswer:
+                  type: string
+                  example: Fluffy
+                transitNumber:
+                  type: string
+                  description: Bank transit number (Canada only).
+                beneficiaryAddress:
+                  type: string
+                  example: 123 Main Street
+                beneficiaryCity:
+                  type: string
+                  example: New York
+                beneficiaryState:
+                  type: string
+                  example: NY
+                beneficiaryPostCode:
+                  type: string
+                  example: '10001'
+  responses:
+    '200':
+      description: Transfer authorized successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                example: '00'
+              description:
+                type: string
+                example: Successful
+              data:
+                type: object
+                properties:
+                  wtTransactionId:
+                    type: string
+                    example: 01kky197w3xc6wyjenpc5r0tnp
+                    description: >-
+                      Unique GlobalPayout transaction ID. Use to track via Fetch
+                      Transaction.
+                  coreTransactionId:
+                    type: string
+                    example: API-FX_TX_DR-08A1B-6add611a-e538-4e67-bcf9-661c77a16804
+                  status:
+                    type: string
+                    example: PROCESSING
+                    enum:
+                      - PROCESSING
+                      - COMPLETED
+                      - FAILED
+                      - PENDING
+                  coreStatus:
+                    type: string
+                    example: PAYMENT_SUCCESSFUL
+                  type:
+                    type: string
+                    example: TRANSFER
+                  idempotencyKey:
+                    type: string
+                    example: 5e246f9a-3e79-4b11-92f1-dbd98b53b308
+                    description: >-
+                      The idempotencyKey you sent, echoed back. Empty if you did
+                      not send one.
+                  idempotentReplay:
+                    type: boolean
+                    example: false
+                    description: >-
+                      True when this response is a replay of an earlier request
+                      with the same key, meaning nothing new was created.
+                  prettyStatus:
+                    type: string
+                    example: Successful
+                  meta:
+                    type: object
+                    description: >-
+                      Transaction metadata including currency details, amounts,
+                      and routing info.
+                    properties:
+                      source_amount:
+                        type: string
+                        example: '250.0'
+                      destination_amount:
+                        type: string
+                        example: '250.0'
+                      source_currency:
+                        type: string
+                        example: USD
+                      destination_currency:
+                        type: string
+                        example: USD
+                      amount_charged:
+                        type: string
+                        example: '255.0'
+                      currency_pair_name:
+                        type: string
+                        example: USD/USD
+                      payment_method:
+                        type: string
+                        example: MobileMoney
+                      destination_country:
+                        type: string
+                        example: CD
+                      destination_country_name:
+                        type: string
+                        example: Congo DR
+                      source_country:
+                        type: string
+                        example: CD
+                      narration:
+                        type: string
+                        example: Family support
+                      trade_side:
+                        type: string
+                        example: BUY
+                      spread_amount:
+                        type: string
+                        example: '0.0'
+                      spread_currency:
+                        type: string
+                        example: USD
+                      wt_transaction_id:
+                        type: string
+                        example: 01kky197w3xc6wyjenpc5r0tnp
+                      trade_context:
+                        type: string
+                        example: default
+                      transactionCategory:
+                        type: string
+                        example: General
+                      payment_destination_type:
+                        type: string
+                        example: Account
+                      tradeType:
+                        type: string
+                        example: FIXED_TRADE

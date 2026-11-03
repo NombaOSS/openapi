@@ -1,0 +1,287 @@
+post:
+  tags:
+    - Airtime and Data Vending
+  summary: Make airtime purchases via sub account
+  description: You can use this endpoint to make airtime purchases via a sub account
+  operationId: Make airtime purchases via specific or sub account v2
+  parameters:
+    - description: The parent accountId of the business this sub account belongs to
+      in: header
+      name: accountId
+      schema:
+        type: string
+        format: uuid
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+    - description: The sub accountId via which airtime is to be purchased
+      in: path
+      name: subAccountId
+      schema:
+        type: string
+        format: uuid
+        example: 890022ce-bae0-45c1-9b9d-ee7872e6ca27
+      required: true
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/AirtimePurchaseRequest.yaml
+    description: The request payload required to make airtime purchases
+    required: true
+  responses:
+    '200':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: >-
+                  Response code. This reflects the HTTP status code of the
+                  response, e.g. `200` when the request completed successfully
+                  and `201` when it was accepted and is still being processed.
+                example: '200'
+                enum:
+                  - '200'
+                  - '201'
+                  - '400'
+                  - '401'
+                  - '403'
+                  - '429'
+                  - '500'
+              description:
+                type: string
+                example: SUCCESS
+                description: Response description
+              message:
+                type: string
+                description: Response message
+                example: Transaction completed Successfully
+              status:
+                type: boolean
+                description: Whether the request was successful
+                example: true
+              data:
+                $ref: ../components/schemas/AirtimePurchaseV2Response.yaml
+            required:
+              - code
+              - description
+              - data
+          example:
+            code: '200'
+            description: SUCCESS
+            message: Transaction completed Successfully
+            status: true
+            data:
+              id: API-TOPUP-A6950-8c060b7c-4155-4e33-a846-101b49229c33
+              status: SUCCESS
+              type: topup
+              amount: 100
+              source: api
+              sourceUserId: null
+              customerBillerId: '08123456788'
+              productId: '62130'
+              meta:
+                api_rrn: '260926204701'
+                rrn: '260926204701'
+                api_account_id: 0167288-d989-460a-bbde-9842f2b4320f
+                api_client_id: 2167288-d989-460a-bbde-9842f2b4320f
+                user_id: 0167288-d989-460a-bbde-9842f2b4320f
+                merchantTxRef: REF-29-07-2026-12
+                allowDuplicate: true
+                sender_name: John Doe
+                idempotentKey: 0167288-d989-460a-bbde-9842f2b4320f_REF-29-07-2026-12
+                pos_withdrawal_id: 0167288-d989-460a-bbde-9842f2b4320f_REF-29-07-2026-12
+                userName: John Doe
+                isCorporate: 'true'
+                currency: NGN
+                hooksEligible: 'true'
+                isSubscribedToSavingsService: false
+                isSubscribedToLoanService: false
+                txnAlertEligible: true
+                banking_entity_id: 189585760
+                banking_entity_user_id: 188595905
+                banking_entity_type: CORPORATE
+                transactionCategory: Bills & Utility
+                network: mtn
+                subscriberNumber: '08123456788'
+                amount_charged: '100.0'
+                wallet_balance: '610.55'
+                wallet_currency: NGN
+                agent_commission: '2.0'
+                gatewayMessage: Success
+                billingServiceTransactionId: 6ab821352669ea6eac2bb2ba
+                billingServiceResponse: SUCCESS
+                income: '0.5'
+                paymentFee: 0
+                tx_revenue: '2.5'
+                phoneNumber: '08123456788'
+              userId: null
+              timeCreated: '2026-09-26T19:47:01.514+00:00'
+      description: OK - your request was successful.
+      headers:
+        X-Rate-Limit-Limit:
+          description: The number of allowed requests in the current period
+          schema:
+            type: string
+            example: '40'
+        X-Rate-Limit-Remaining:
+          description: The number of remaining requests in the current period
+          schema:
+            type: string
+            example: '39'
+        X-Rate-Limit-Window:
+          description: The specified rate limit window
+          schema:
+            type: string
+            example: 1s
+    '201':
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: string
+                description: >-
+                  Response code. This reflects the HTTP status code of the
+                  response, e.g. `200` when the request completed successfully
+                  and `201` when it was accepted and is still being processed.
+                example: '201'
+                enum:
+                  - '200'
+                  - '201'
+                  - '400'
+                  - '401'
+                  - '403'
+                  - '429'
+                  - '500'
+              description:
+                type: string
+                description: Response description
+                example: PROCESSING
+              message:
+                type: string
+                description: Response message
+                example: Processing
+              status:
+                type: boolean
+                description: Whether the request was successful
+                example: true
+              data:
+                $ref: ../components/schemas/AirtimePurchaseV2Response.yaml
+            required:
+              - code
+              - description
+              - data
+          example:
+            code: '201'
+            description: PROCESSING
+            message: Processing
+            status: true
+            data:
+              id: API-TOPUP-A6950-8c060b7c-4155-4e33-a846-101b49229c33
+              status: PENDING_BILLING
+              type: topup
+              amount: 100
+              source: api
+              sourceUserId: null
+              customerBillerId: '08123456788'
+              productId: '62130'
+              meta:
+                api_rrn: '260926204701'
+                rrn: '260926204701'
+                api_account_id: 0167288-d989-460a-bbde-9842f2b4320f
+                api_client_id: 2167288-d989-460a-bbde-9842f2b4320f
+                user_id: 0167288-d989-460a-bbde-9842f2b4320f
+                merchantTxRef: REF-29-07-2026-12
+                allowDuplicate: true
+                sender_name: John Doe
+                idempotentKey: 0167288-d989-460a-bbde-9842f2b4320f_REF-29-07-2026-12
+                pos_withdrawal_id: 0167288-d989-460a-bbde-9842f2b4320f_REF-29-07-2026-12
+                userName: John Doe
+                isCorporate: 'true'
+                currency: NGN
+                hooksEligible: 'true'
+                isSubscribedToSavingsService: false
+                isSubscribedToLoanService: false
+                txnAlertEligible: true
+                banking_entity_id: 189585760
+                banking_entity_user_id: 188595905
+                banking_entity_type: CORPORATE
+                transactionCategory: Bills & Utility
+                network: mtn
+                subscriberNumber: '08123456788'
+                amount_charged: '100.0'
+                wallet_balance: '610.55'
+                wallet_currency: NGN
+                phoneNumber: '08123456788'
+              userId: null
+              timeCreated: '2026-09-26T19:47:01.514+00:00'
+      description: >-
+        Created - your request was accepted and is being processed.
+        `data.status` is `PENDING_BILLING`; listen for webhook notifications or
+        requery the transaction for the final status.
+      headers:
+        X-Rate-Limit-Limit:
+          description: The number of allowed requests in the current period
+          schema:
+            type: string
+            example: '40'
+        X-Rate-Limit-Remaining:
+          description: The number of remaining requests in the current period
+          schema:
+            type: string
+            example: '39'
+        X-Rate-Limit-Window:
+          description: The specified rate limit window
+          schema:
+            type: string
+            example: 1s
+    '400':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: The request body sent by merchant did not pass the validation checks
+    '401':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthenticationError.yaml
+      description: The access_token provided to access the resource is missing or invalid.
+    '403':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/AuthorizationError.yaml
+      description: The client does not have the permissions to access this resource
+    '404':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RecordNotFoundError.yaml
+      description: The record that the client is trying to access does not exist.
+    '429':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RateLimitError.yaml
+      description: >-
+        The client has maxed out the number of calls within a time period on
+        this resource.
+    '500':
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/ServerError.yaml
+      description: Downstream system error.
+    default:
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/RequestError.yaml
+      description: Resource not available
+  security:
+    - BearerAuth: []

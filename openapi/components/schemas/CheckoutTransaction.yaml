@@ -1,0 +1,20 @@
+type: object
+properties:
+  success:
+    type: boolean
+    description: >-
+      True if the transaction is already completed and successful, false
+      otherwise
+    example: 'true'
+  message:
+    type: string
+    description: Response message describing the transaction status
+    example: success
+  order:
+    $ref: ./OrderDetails.yaml
+  transactionDetails:
+    $ref: ./CheckoutTransactionDetails.yaml
+  transferDetails:
+    $ref: ./CheckoutTransferDetails.yaml
+  cardDetails:
+    $ref: ./CheckoutCardDetails.yaml

@@ -1,0 +1,46 @@
+type: object
+properties:
+  code:
+    type: string
+    example: '00'
+  description:
+    type: string
+    example: SUCCESS
+  data:
+    type: object
+    properties:
+      customerAccountName:
+        type: string
+        example: Kolapo Ojo
+      mandateId:
+        type: string
+        example: c93e1e1b-85f5-461e-8b9b-74ee091d4aa4
+      customerAccountNumber:
+        type: string
+        example: '0134914434'
+      mandateStatus:
+        type: string
+        example: Active
+      rejectionComment:
+        type: string
+        example: Expired e-mandate
+      mandateAdviceStatus:
+        type: string
+        example: Advise not sent
+    required:
+      - customerAccountName
+      - mandateId
+      - customerAccountNumber
+      - mandateStatus
+  message:
+    type: string
+    example: SUCCESS
+  status:
+    type: boolean
+    example: true
+required:
+  - code
+  - description
+  - data
+  - message
+  - status

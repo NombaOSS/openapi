@@ -1,0 +1,14 @@
+type: object
+description: The response object for a cancel order operation
+properties:
+  success:
+    type: boolean
+    description: Indicates whether the cancellation was successful
+    example: true
+  message:
+    type: string
+    description: A message describing the result of the cancellation
+    example: Order cancelled successfully
+required:
+  - success
+  - message

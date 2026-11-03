@@ -1,0 +1,43 @@
+type: object
+description: A structure representing an object required to post a bank account transfer.
+properties:
+  amount:
+    type: number
+    format: double
+    description: The amount to be transferred.
+    example: 3500
+  accountNumber:
+    type: string
+    description: The destination bank account number.
+    example: '0554772814'
+    maxLength: 10
+    minLength: 10
+  accountName:
+    type: string
+    description: The name on the account.
+    example: M.A Animashaun
+  bankCode:
+    type: string
+    description: The code of the recipient bank.
+    example: '058'
+  merchantTxRef:
+    type: string
+    description: |-
+      Unique reference used to track a transaction from an external process. 
+       
+      This is an idempotency key and must be unique per transaction.
+    example: UNQ_123abGGhh5546
+  senderName:
+    type: string
+    description: Sender name
+    example: Nightly Post
+  narration:
+    type: string
+    description: The payment narration
+    example: Testing Payment
+required:
+  - amount
+  - accountNumber
+  - bankCode
+  - accountName
+  - merchantTxRef
