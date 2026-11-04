@@ -1,4 +1,9 @@
-# openapi
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/NombaOSS/openapi/main/.github/assets/banner-dark.svg">
+  <img alt="Nomba OpenAPI Spec" src="https://raw.githubusercontent.com/NombaOSS/openapi/main/.github/assets/banner-light.svg" width="100%">
+</picture>
+
+# Nomba OpenAPI Spec
 
 [![CI](https://github.com/NombaOSS/openapi/actions/workflows/ci.yml/badge.svg)](https://github.com/NombaOSS/openapi/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -31,6 +36,16 @@ Render it as a single HTML page:
 ```bash
 npm ci && npm run docs   # writes dist/index.html
 ```
+
+## Building with an AI coding agent?
+
+Install the [Nomba agent skills](https://github.com/NombaOSS/skills) so Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI and other agents write Nomba integrations the safe way: idempotency references, requery on timeouts, refunds only when final, and webhook verification.
+
+```bash
+npx skills add NombaOSS/skills
+```
+
+In Claude Code you can also use `/plugin marketplace add NombaOSS/skills` and then `/plugin install nomba@nomba`.
 
 ## Where it comes from
 
